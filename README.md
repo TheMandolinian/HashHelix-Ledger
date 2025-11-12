@@ -1,11 +1,14 @@
 [![Verify HashHelix Epochs](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify.yml/badge.svg)](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify.yml)
 
-# HashHelix-Ledger
-HashHelix is a deterministic, math-driven ledger that replaces consensus with a sine-based recursion...
+# HashHelix Ledger 🧬  
+**The world’s first deterministic, math-driven ledger built on the π/n spiral.**  
+HashHelix replaces traditional consensus with a sine-based recursion, encoding time and state directly into SHA-256 computation for verifiable, tamper-evident data lineage.  
 
-# HashHelix-Ledger
-HashHelix is a deterministic, math-driven ledger that replaces consensus with a sine-based recursion. Each record evolves through the π/n spiral and SHA-256, encoding time and state directly into computation for verifiable, tamper-evident data lineage. Created by James Bradley Waresback AKA TheMandolinian
----
+Created by **James Bradley Waresback** — a.k.a. *The Mandolinian*  
+📜 [Whitepaper v1.5 – Chiral Extension](./docs/HashHelix_Whitepaper_v1.5.pdf)
+
+[![Verify HashHelix Epochs](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify-epochs.yml/badge.svg)](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify-epochs.yml)
+
 
 ## 🧾 Proof of Publication
 
