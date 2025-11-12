@@ -1,122 +1,120 @@
 #!/usr/bin/env python3
-import hashlib, json, subprocess, sys
+import argparse, json, math, time, os, hashlib
 from pathlib import Path
-from datetime import datetime, timezone
 
-ROOT = Path(__file__).resolve().parents[1]
-SHARDS = ROOT / "shards"
-GENESIS_MANIFEST = SHARDS / "genesis" / "artifacts" / "manifest.sha256"
-RESEARCH_DIR = SHARDS / "research"
+def sha256_hex(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
 
-def git_head():
-    try:
-        return subprocess.check_output(["git","rev-parse","HEAD"], cwd=ROOT).decode().strip()
-    except Exception:
-        return None
+def spiral_next(a_prev: int, n: int, sign: int) -> int:
+    # sign=+1 => +pi/n ; sign=-1 => -pi/n
+    return math.floor(n * math.sin(a_prev + sign * math.pi / n)) + 1
 
-def file_sha256(path: Path) -> str:
-    h = hashlib.sha256()
+def chiral_step(prev_plus, prev_minus, n, data_bytes, h_prev_plus_hex, h_prev_minus_hex):
+    a_plus = spiral_next(prev_plus, n, +1)
+    a_minus = spiral_next(prev_minus, n, -1)
+    # Hn± = SHA256( spiral(a_{n-1},n) || Dn || H_{n-1} )
+    h_plus = sha256_hex(
+        (str(a_plus).encode() + data_bytes + bytes.fromhex(h_prev_plus_hex))
+        if h_prev_plus_hex else (str(a_plus).encode() + data_bytes)
+    )
+    h_minus = sha256_hex(
+        (str(a_minus).encode() + data_bytes + bytes.fromhex(h_prev_minus_hex))
+        if h_prev_minus_hex else (str(a_minus).encode() + data_bytes)
+    )
+    return a_plus, a_minus, h_plus, h_minus
+
+def lane_path(lanes_json, lane):
+    return lanes_json["lanes"][lane]["path"]
+
+def load_head(path: Path):
+    if not path.exists() or path.stat().st_size == 0:
+        return 0, 1, 1, "", "", None
     with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1<<20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+        f.seek(0, os.SEEK_END)
+        size = f.tell()
+        # read last line
+        off = max(0, size - 8192)
+        f.seek(off)
+        tail = f.read().splitlines()
+        last = json.loads(tail[-1].decode())
+    return last["n"], last["a_plus"], last["a_minus"], last["h_plus"], last["h_minus"], last
 
-def read_kv(path: Path):
-    d = {}
-    if path.exists():
-        for line in path.read_text().splitlines():
-            if "=" in line:
-                k, v = line.split("=", 1)
-                d[k.strip()] = v.strip()
-    return d
+def append_record(path: Path, rec: dict):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("ab") as f:
+        line = (json.dumps(rec, separators=(",", ":")) + "\n").encode()
+        f.write(line)
 
-def build_summary():
-    summary = {
-        "project": "HashHelix Ledger",
-        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "repo_head": git_head(),
-        "genesis": None,
-        "research": []
+def cmd_append(args):
+    lanes = json.load(open("lanes.json"))
+    lane = args.lane
+    p = Path(lane_path(lanes, lane))
+    n_prev, a_prev_plus, a_prev_minus, h_prev_plus, h_prev_minus, _ = load_head(p)
+    n = n_prev + 1
+    data_bytes = args.data.encode()
+    a_plus, a_minus, h_plus, h_minus = chiral_step(a_prev_plus, a_prev_minus, n, data_bytes, h_prev_plus, h_prev_minus)
+    rec = {
+        "n": n,
+        "ts": int(time.time()),
+        "data": args.data,
+        "a_plus": a_plus,
+        "a_minus": a_minus,
+        "h_plus": h_plus,
+        "h_minus": h_minus,
+        "prev_h_plus": h_prev_plus,
+        "prev_h_minus": h_prev_minus
     }
+    append_record(p, rec)
+    print(json.dumps({"lane": lane, "n": n, "h_plus": h_plus, "h_minus": h_minus}, indent=2))
 
-    # Genesis
-    if GENESIS_MANIFEST.exists():
-        summary["genesis"] = {
-            "manifest_path": str(GENESIS_MANIFEST.relative_to(ROOT)),
-            "manifest_sha256": file_sha256(GENESIS_MANIFEST)
+def cmd_head(args):
+    lanes = json.load(open("lanes.json"))
+    p = Path(lane_path(lanes, args.lane))
+    n, ap, am, hp, hm, rec = load_head(p)
+    if rec is None:
+        print(json.dumps({"lane": args.lane, "empty": True}, indent=2))
+    else:
+        print(json.dumps({"lane": args.lane, "n": n, "h_plus": hp, "h_minus": hm}, indent=2))
+
+def cmd_init(args):
+    # seed lane with one record if empty
+    lanes = json.load(open("lanes.json"))
+    p = Path(lane_path(lanes, args.lane))
+    _, _, _, _, _, rec = load_head(p)
+    if rec is None:
+        # first record uses a1=1 for both strands; n=1
+        a1 = 1
+        data = "genesis"
+        h_plus = sha256_hex(str(a1).encode() + data.encode())
+        h_minus = sha256_hex(str(a1).encode() + data.encode())
+        rec = {
+            "n": 1,
+            "ts": int(time.time()),
+            "data": data,
+            "a_plus": a1,
+            "a_minus": a1,
+            "h_plus": h_plus,
+            "h_minus": h_minus,
+            "prev_h_plus": "",
+            "prev_h_minus": ""
         }
-
-    # Research shards
-    if RESEARCH_DIR.exists():
-        for shard in sorted(RESEARCH_DIR.glob("*")):
-            art = shard / "artifacts"
-            if not art.exists():
-                continue
-            manifest = art / "manifest.sha256"
-            chiral = art / "chiral_link.sha256"
-            files = [p.name for p in art.glob("*.pdf")]
-            entry = {
-                "slug": shard.name,
-                "artifacts_path": str(art.relative_to(ROOT)),
-                "files": files,
-                "manifest": {
-                    "path": str(manifest.relative_to(ROOT)) if manifest.exists() else None,
-                    "sha256": file_sha256(manifest) if manifest.exists() else None,
-                    "size": manifest.stat().st_size if manifest.exists() else None
-                },
-                "chiral_link": None
-            }
-            if chiral.exists():
-                kv = read_kv(chiral)
-                entry["chiral_link"] = {
-                    "path": str(chiral.relative_to(ROOT)),
-                    "left": kv.get("left"),
-                    "right": kv.get("right"),
-                    "commitment": kv.get("commitment")
-                }
-            summary["research"].append(entry)
-
-    out = ROOT / "ledger_summary.json"
-    out.write_text(json.dumps(summary, indent=2))
-    print(f"✅ Wrote {out}")
-    return 0
-
-def verify_all():
-    ok = True
-    if not GENESIS_MANIFEST.exists():
-        print("❌ Missing genesis manifest:", GENESIS_MANIFEST)
-        return 1
-
-    for shard in sorted(RESEARCH_DIR.glob("*")) if RESEARCH_DIR.exists() else []:
-        art = shard / "artifacts"
-        chiral = art / "chiral_link.sha256"
-        manifest_r = art / "manifest.sha256"
-        if not (chiral.exists() and manifest_r.exists()):
-            continue
-        kv = read_kv(chiral)
-        g = GENESIS_MANIFEST.read_bytes()
-        r = manifest_r.read_bytes()
-        left = hashlib.sha256(g + r).hexdigest()
-        right = hashlib.sha256(r + g).hexdigest()
-        commit = hashlib.sha256(min(left, right).encode() + max(left, right).encode()).hexdigest()
-        shard_ok = (kv.get("left")==left and kv.get("right")==right and kv.get("commitment")==commit)
-        status = "✅" if shard_ok else "❌"
-        print(f"{status} {shard.name} chiral commitment")
-        ok = ok and shard_ok
-
-    print("Overall:", "✅ Verified" if ok else "❌ Mismatch")
-    return 0 if ok else 1
-
-def main():
-    cmd = sys.argv[1] if len(sys.argv) > 1 else "help"
-    if cmd == "build-summary":
-        sys.exit(build_summary())
-    if cmd == "verify":
-        sys.exit(verify_all())
-    print("Usage:")
-    print("  python3 scripts/hashhelix_tools.py build-summary")
-    print("  python3 scripts/hashhelix_tools.py verify")
-    sys.exit(1)
+        append_record(p, rec)
+        print(json.dumps({"lane": args.lane, "initialized": True, "h_plus": h_plus, "h_minus": h_minus}, indent=2))
+    else:
+        print(json.dumps({"lane": args.lane, "initialized": False, "message": "already has records"}, indent=2))
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    s0 = sub.add_parser("init")
+    s0.add_argument("--lane", default="default-chiral")
+    s0.set_defaults(func=cmd_init)
+    s1 = sub.add_parser("append")
+    s1.add_argument("--lane", default="default-chiral")
+    s1.add_argument("--data", default="{}")
+    s1.set_defaults(func=cmd_append)
+    s2 = sub.add_parser("head")
+    s2.add_argument("--lane", default="default-chiral")
+    s2.set_defaults(func=cmd_head)
+    args = ap.parse_args()
+    args.func(args)

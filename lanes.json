@@ -1,0 +1,8 @@
+{
+  "lanes": {
+    "default-chiral": {
+      "path": "data/chiral_ledger.jsonl",
+      "chiral": true
+    }
+  }
+}

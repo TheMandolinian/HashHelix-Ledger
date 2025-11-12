@@ -1,0 +1,14 @@
+{
+  "epoch": 5,
+  "lanes": {
+    "default-chiral": {
+      "n": 56,
+      "h_plus": "d3881bdcd0fbcf8d47f08e5227b772111ecab6ec283ab84875a53be8d5b3bca8",
+      "h_minus": "d26a54451c76bf367ed7820386b981e29af282e80164d0ec880b4a55aece6e6a"
+    }
+  },
+  "merkle_root": "0e64bc601279bd57e0ca26a41a4cbf1e531cd3782d66ed05b006f0a3276a89fd",
+  "chiral_commitments": {
+    "default-chiral": "2a3a803487a17bda7f7415a619fa4c3449ed35304bf858f41df413a656484621"
+  }
+}
