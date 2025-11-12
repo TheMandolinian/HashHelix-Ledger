@@ -1,7 +1,7 @@
 [![Verify HashHelix Epochs](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify.yml/badge.svg)](https://github.com/TheMandolinian/HashHelix-Ledger/actions/workflows/verify.yml)
 
 # HashHelix Ledger 🧬  
-**The world’s first deterministic, math-driven ledger built on the π/n spiral.**  
+**HashHelix introduces the first known use of a π/n-phase-drifted sine recursion as a deterministic temporal primitive in a cryptographic ledger.**  
 HashHelix replaces traditional consensus with a sine-based recursion, encoding time and state directly into SHA-256 computation for verifiable, tamper-evident data lineage.  
 
 Created by **James Bradley Waresback** — a.k.a. *The Mandolinian*  
