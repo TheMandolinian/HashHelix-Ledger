@@ -32,36 +32,7 @@ def read_kv(path: Path):
 
 def build_summary():
     summary = {
-        "project": "HashHelix Ledger",
-        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "repo_head": git_head(),
-        "genesis": None,
-        "research": []
-    }
-
-    # Genesis
-    if GENESIS_MANIFEST.exists():
-        summary["genesis"] = {
-            "manifest_path": str(GENESIS_MANIFEST.relative_to(ROOT)),
-            "manifest_sha256": file_sha256(GENESIS_MANIFEST)
-        }
-
-    # Research shards
-    if RESEARCH_DIR.exists():
-        for shard in sorted(RESEARCH_DIR.glob("*")):
-            art = shard / "artifacts"
-            if not art.exists(): 
-                continue
-            manifest = art / "manifest.sha256"
-            chiral = art / "chiral_link.sha256"
-            files = [p.name for p in art.glob("*.pdf")]
-            entry = {
-                "slug": shard.name,
-                "artifacts_path": str(art.relative_to(ROOT)),
-                "files": files,
-                "manifest": {
-                    "path": str(manifest.rel
-
+        "pr
 mkdir -p scripts
 cat > scripts/hashhelix_tools.py <<'PY'
 #!/usr/bin/env python3
