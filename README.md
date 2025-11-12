@@ -12,7 +12,7 @@ HashHelix is a deterministic, math-driven ledger that replaces consensus with a 
 
 This release includes:
 - `V1.5 HashHelix Ledger.pdf`
-- `V1.4 Tokenomics Whitepaper HashHelix Ledger.pdf`
+- `V1.2 Tokenomics Whitepaper HashHelix Ledger.pdf`
 
 All files are cryptographically timestamped and anchored in the GitHub commit history.  
 The accompanying `checksums.sha256` file provides SHA-256 integrity proofs for independent verification.
@@ -29,7 +29,7 @@ The accompanying `checksums.sha256` file provides SHA-256 integrity proofs for i
 - 📜 Path: `shards/research/2025-11-11-chiral-v1.5/artifacts/manifest.sha256`
 - 🧩 Includes:
   - V1.5 HashHelix Ledger.pdf  
-  - V1.4 Tokenomics Whitepaper HashHelix Ledger.pdf
+  - V1.2 Tokenomics Whitepaper HashHelix Ledger.pdf
 - ⏰ Published: 2025-11-11  
 - 🔗 Release: [v1.5](https://github.com/TheMandolinian/HashHelix-Ledger/releases/tag/v1.5)
 
