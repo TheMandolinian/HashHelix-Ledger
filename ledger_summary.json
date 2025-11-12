@@ -1,0 +1,29 @@
+{
+  "project": "HashHelix Ledger",
+  "generated_utc": "2025-11-12T04:11:12Z",
+  "repo_head": "29071c4a7e5192ab3fe9e7539d2d2594b0b1ae86",
+  "genesis": {
+    "manifest_path": "shards/genesis/artifacts/manifest.sha256",
+    "manifest_sha256": "c1ceeb6ae223a8f2ef689dfe3c42dceba45e8e52686a7105e88799272c2f8590"
+  },
+  "research": [
+    {
+      "slug": "2025-11-11-chiral-v1.5",
+      "artifacts_path": "shards/research/2025-11-11-chiral-v1.5/artifacts",
+      "files": [
+        "V1.5 HashHelix Ledger.pdf"
+      ],
+      "manifest": {
+        "path": "shards/research/2025-11-11-chiral-v1.5/artifacts/manifest.sha256",
+        "sha256": "7bfd61376a32b2b4bae8d74866188edb431e2e4ccf98588e96dd170d75e67e1e",
+        "size": 92
+      },
+      "chiral_link": {
+        "path": "shards/research/2025-11-11-chiral-v1.5/artifacts/chiral_link.sha256",
+        "left": "e87b73880082e85466494c3695388445c337b0c1c3df26b26a4c3571f9541546",
+        "right": "cfc63b9eb0e412a07f28f2163ba82ac638cde818d1dcadfd900aed205e682856",
+        "commitment": "73bfb0521624e751ce26fa9b42a8561fd8c1156ff12095cdc2c04372659cbaa9"
+      }
+    }
+  ]
+}
