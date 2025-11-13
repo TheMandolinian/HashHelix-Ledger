@@ -4,6 +4,16 @@
 **HashHelix introduces the first known use of a π/n-phase-drifted sine recursion as a deterministic temporal primitive in a cryptographic ledger.**  
 HashHelix replaces traditional consensus with a sine-based recursion, encoding time and state directly into SHA-256 computation for verifiable, tamper-evident data lineage.  
 
+
+### The Ledger Logs Itself
+Every experiment, benchmark, and breakthrough is recorded in the `meta` lane — **on the ledger**.
+
+```bash
+# See every experiment ever run:
+cat data/meta_ledger.jsonl | grep experiment -A5
+
+
+
 Created by **James Bradley Waresback** — a.k.a. *The Mandolinian*  
 📜 [Whitepaper v1.5 – Chiral Extension](./docs/HashHelix_Whitepaper_v1.5.pdf)
 
