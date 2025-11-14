@@ -2,7 +2,13 @@
   "lanes": {
     "default-chiral": {
       "path": "data/chiral_ledger.jsonl",
-      "chiral": true
+      "helices": 2,
+      "tier": "warm"
+    },
+    "meta": {
+      "path": "data/meta_ledger.jsonl",
+      "helices": 5,
+      "tier": "hot"
     }
   }
 }

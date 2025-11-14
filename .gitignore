@@ -1,5 +1,6 @@
-.venv/
 __pycache__/
 *.pyc
-CONTEXT.txt
-*.log
+chat.txt
+hh_tmp/
+shards/genesis/[0-9]*/
+.venv/
