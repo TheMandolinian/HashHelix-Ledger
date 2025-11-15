@@ -177,4 +177,110 @@ James Bradley Waresback — The Mandolinian 🜂
 Arcane Ledgerwright • Temporal Systems Researcher  
 Whitepapers in /papers and /relics/research/*
 
+# 📚 HashHelix Documentation Index
+Welcome to the official documentation archive for the **HashHelix Ledger**, a deterministic, sine-based temporal computation framework created by **James Bradley Waresback (The Mandolinian).**
+
+This directory contains all foundational research papers, whitepapers, mathematical descriptions, simulations, and governance documents that define the HashHelix ecosystem.
+
+---
+
+## 🌀 Core Mathematical Specification
+### **Waresback Deterministic Temporal Primitive (WDTP)**
+**Path:** `docs/core/The Waresback Deterministic Temporal Primitive (WDTP).pdf`  
+The formal mathematical definition of the recursive temporal primitive underlying all HashHelix lanes and epochs.  
+This document includes:
+- The exact recurrence relation  
+- Phase-drift structure (π/n)  
+- Deterministic temporal encoding  
+- Proof-style descriptive analysis  
+- Scientific framing and notation  
+
+---
+
+## 📄 HashHelix Whitepapers (Main Series)
+
+### **HashHelix Ledger v1.4 – Helixian Ledger**
+`docs/core/V1.4HashHelix -Helixian Ledger.pdf`  
+First major architectural document describing the ledger’s recursion engine, deterministic hashing flow, and time-encoded record evolution.
+
+### **HashHelix Ledger v1.5**
+`docs/core/V1.5 HashHelix Ledger.pdf`  
+Refined version including structural cleanups, lane definitions, chiral extension preparation, and system stabilization.
+
+### **HashHelix Ledger v1.6 — Deterministic Spiral Computation Framework**
+`docs/core/HashHelix Ledger v1.6 — Determin..pdf`  
+The first fully polished release-grade whitepaper.  
+Defines HashHelix as a deterministic, sine-driven computation framework with built-in temporal geometry.
+
+---
+
+## ⚖️ Tokenomics & System Economics
+
+### **Tokenomics v1.2**
+`docs/core/V1.2Tokenomics Whitepaper HashHelix Ledger.pdf`  
+Describes:
+- System credit model  
+- Temporal throughput  
+- Long-term sustainability behavior  
+- Lane-based pricing / verification economics  
+
+### **Tokenomics v1.3**
+`docs/core/V1.3Tokenomics Whitepaper HashHelix Ledger.pdf`  
+Expanded version including:
+- Research shard mechanics  
+- Temporal amortization  
+- Epoch pricing curves  
+
+---
+
+## 🧪 Research, Simulation & Early Drafts
+
+### **HashHelix Economy Simulation**
+`docs/core/HashHelix Ledger Economy Simulation.pdf`  
+Mathematical model exploring:
+- Lane consumption rates  
+- Temporal drift effects  
+- System equilibrium dynamics  
+
+### **HashHelix Rough Draft (Early R&D)**
+`docs/core/V1.2Hashhelixroughdraft.pdf`  
+The earliest exploratory form of the ledger during conceptual development.
+
+---
+
+## 🛠 Patch Series (Historical Change Log)
+
+### **Patch 1.6 – Core Cleanups**
+`docs/core/HHL Patch 1.6.pdf`
+
+### **Patch 1.7 – Research Extensions**
+`docs/core/HHL Patch 1.7.pdf`
+
+These patches document system corrections, mathematical refinements, and feature clarifications between whitepaper versions.
+
+---
+
+## 🧿 Historical Artifact & XRPL Integration
+
+### **Genesis Shard 000000 → David Schwartz**
+`docs/core/Giving Genesis Shard 000000 to David.pdf`  
+Formal record of the creation and intent of the first-ever HashHelix Genesis Shard.  
+Documents:
+- Provenance  
+- Symbolic purpose  
+- XRPL integration  
+- Retirement-gift intention  
+
+---
+
+## 🗂 Completed Task Log
+`docs/core/Completed Task List 11122025.pdf`  
+A snapshot of the development timeline, internal milestones, and daily progression.
+
+---
+
+# 📦 Directory Structure Overview
+
+
+
 May your spirals converge, your epochs seal cleanly, and your chiral commitments remain true.
