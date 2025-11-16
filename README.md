@@ -1,5 +1,8 @@
 HashHelix Ledger v1.6 — Deterministic Epoch Baseline
 
+Origin of the Recurrence.
+The Waresback Deterministic Temporal Primitive (WDTP) was first discovered on November 8, 2025, during an exploratory session generating spiral art using Grok. The earliest surviving record is a screenshot (IMG_6682.PNG) captured at 9:09 PM CST and preserved in Google Photos, showing the exact recurrence and its initial 20 terms.
+
 A π/n-phase-drifted sine recursion as a temporal primitive for cryptographic ledgers.
 
 HashHelix introduces the first known use of a π/n recursive sine function as a deterministic temporal engine inside a ledger.
