@@ -1,0 +1,302 @@
+{
+  "description": "HashHelix entropy fingerprint vs several baseline generators.",
+  "bin_edges": [
+    -Infinity,
+    -2048,
+    -512,
+    -128,
+    -32,
+    32,
+    128,
+    512,
+    2048,
+    Infinity
+  ],
+  "distributions": {
+    "hashhelix_entropy": {
+      "count": 6000000,
+      "min": -1999817,
+      "max": 1999947,
+      "mean": 343.9527911666978,
+      "stddev": 817174.0478126637,
+      "pos_fraction": 0.5003981666666667,
+      "neg_fraction": 0.4996001666666667,
+      "zero_fraction": 1.6666666666666667e-06,
+      "bins": [
+        {
+          "range": "(-\u221e, -2048)",
+          "count": 2981214,
+          "fraction": 0.496869
+        },
+        {
+          "range": "[-2048, -512)",
+          "count": 11670,
+          "fraction": 0.001945
+        },
+        {
+          "range": "[-512, -128)",
+          "count": 3417,
+          "fraction": 0.0005695
+        },
+        {
+          "range": "[-128, -32)",
+          "count": 930,
+          "fraction": 0.000155
+        },
+        {
+          "range": "[-32, 32)",
+          "count": 762,
+          "fraction": 0.000127
+        },
+        {
+          "range": "[32, 128)",
+          "count": 1035,
+          "fraction": 0.0001725
+        },
+        {
+          "range": "[128, 512)",
+          "count": 3582,
+          "fraction": 0.000597
+        },
+        {
+          "range": "[512, 2048)",
+          "count": 11832,
+          "fraction": 0.001972
+        },
+        {
+          "range": "[2048, \u221e)",
+          "count": 2985558,
+          "fraction": 0.497593
+        }
+      ]
+    },
+    "uniform_int": {
+      "count": 200000,
+      "min": -1999808,
+      "max": 1999943,
+      "mean": 831.5759849999861,
+      "stddev": 1152976.943027952,
+      "pos_fraction": 0.499875,
+      "neg_fraction": 0.500125,
+      "zero_fraction": 0.0,
+      "bins": [
+        {
+          "range": "(-\u221e, -2048)",
+          "count": 99923,
+          "fraction": 0.499615
+        },
+        {
+          "range": "[-2048, -512)",
+          "count": 79,
+          "fraction": 0.000395
+        },
+        {
+          "range": "[-512, -128)",
+          "count": 20,
+          "fraction": 0.0001
+        },
+        {
+          "range": "[-128, -32)",
+          "count": 1,
+          "fraction": 5e-06
+        },
+        {
+          "range": "[-32, 32)",
+          "count": 2,
+          "fraction": 1e-05
+        },
+        {
+          "range": "[32, 128)",
+          "count": 7,
+          "fraction": 3.5e-05
+        },
+        {
+          "range": "[128, 512)",
+          "count": 16,
+          "fraction": 8e-05
+        },
+        {
+          "range": "[512, 2048)",
+          "count": 81,
+          "fraction": 0.000405
+        },
+        {
+          "range": "[2048, \u221e)",
+          "count": 99871,
+          "fraction": 0.499355
+        }
+      ]
+    },
+    "normal_int": {
+      "count": 200000,
+      "min": -3825824,
+      "max": 3829969,
+      "mean": -480.7519999999966,
+      "stddev": 818516.5568442261,
+      "pos_fraction": 0.49994,
+      "neg_fraction": 0.50006,
+      "zero_fraction": 0.0,
+      "bins": [
+        {
+          "range": "(-\u221e, -2048)",
+          "count": 99793,
+          "fraction": 0.498965
+        },
+        {
+          "range": "[-2048, -512)",
+          "count": 164,
+          "fraction": 0.00082
+        },
+        {
+          "range": "[-512, -128)",
+          "count": 40,
+          "fraction": 0.0002
+        },
+        {
+          "range": "[-128, -32)",
+          "count": 15,
+          "fraction": 7.5e-05
+        },
+        {
+          "range": "[-32, 32)",
+          "count": 1,
+          "fraction": 5e-06
+        },
+        {
+          "range": "[32, 128)",
+          "count": 8,
+          "fraction": 4e-05
+        },
+        {
+          "range": "[128, 512)",
+          "count": 44,
+          "fraction": 0.00022
+        },
+        {
+          "range": "[512, 2048)",
+          "count": 146,
+          "fraction": 0.00073
+        },
+        {
+          "range": "[2048, \u221e)",
+          "count": 99789,
+          "fraction": 0.498945
+        }
+      ]
+    },
+    "logistic_map": {
+      "count": 200000,
+      "min": -4900,
+      "max": 4975,
+      "mean": 317.0525749999963,
+      "stddev": 3402.000809188368,
+      "pos_fraction": 0.53983,
+      "neg_fraction": 0.46013,
+      "zero_fraction": 4e-05,
+      "bins": [
+        {
+          "range": "(-\u221e, -2048)",
+          "count": 65455,
+          "fraction": 0.327275
+        },
+        {
+          "range": "[-2048, -512)",
+          "count": 20243,
+          "fraction": 0.101215
+        },
+        {
+          "range": "[-512, -128)",
+          "count": 4765,
+          "fraction": 0.023825
+        },
+        {
+          "range": "[-128, -32)",
+          "count": 1151,
+          "fraction": 0.005755
+        },
+        {
+          "range": "[-32, 32)",
+          "count": 819,
+          "fraction": 0.004095
+        },
+        {
+          "range": "[32, 128)",
+          "count": 1598,
+          "fraction": 0.00799
+        },
+        {
+          "range": "[128, 512)",
+          "count": 6170,
+          "fraction": 0.03085
+        },
+        {
+          "range": "[512, 2048)",
+          "count": 22686,
+          "fraction": 0.11343
+        },
+        {
+          "range": "[2048, \u221e)",
+          "count": 77113,
+          "fraction": 0.385565
+        }
+      ]
+    },
+    "sha256_int": {
+      "count": 200000,
+      "min": -2147475073,
+      "max": 2147473690,
+      "mean": 1217418.354315009,
+      "stddev": 1240402189.492062,
+      "pos_fraction": 0.499815,
+      "neg_fraction": 0.500185,
+      "zero_fraction": 0.0,
+      "bins": [
+        {
+          "range": "(-\u221e, -2048)",
+          "count": 100037,
+          "fraction": 0.500185
+        },
+        {
+          "range": "[-2048, -512)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[-512, -128)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[-128, -32)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[-32, 32)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[32, 128)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[128, 512)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[512, 2048)",
+          "count": 0,
+          "fraction": 0.0
+        },
+        {
+          "range": "[2048, \u221e)",
+          "count": 99963,
+          "fraction": 0.499815
+        }
+      ]
+    }
+  }
+}

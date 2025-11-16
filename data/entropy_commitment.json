@@ -1,0 +1,20 @@
+{
+    "lanes": [
+        {
+            "lane": 1,
+            "file": "hh_entropy_lane01.txt",
+            "sha256": "274496a7c37861474d2a7df512c712ccf29a8d449a41ecea2c04f7d7c570596d"
+        },
+        {
+            "lane": 2,
+            "file": "hh_entropy_lane02.txt",
+            "sha256": "cd0c6193ff842510bc61843209ef33fff16f6b6c98f80c1774814a6bfe6ee14d"
+        },
+        {
+            "lane": 3,
+            "file": "hh_entropy_lane03.txt",
+            "sha256": "274496a7c37861474d2a7df512c712ccf29a8d449a41ecea2c04f7d7c570596d"
+        }
+    ],
+    "combined_sha256": "04b2f90debb3fb49aefca2c5126f91e1e37f29833164a276b07f91bc09dc6f4e"
+}
