@@ -1,20 +1,20 @@
 """
-Stage 4 — Long-Horizon Behavior Harness
+Stage 4 — Long-Horizon Behavior Plan
 
-This script is responsible for **long-duration** experiments with the existing
-HashHelix engine.
+This script is responsible for defining and recording **long-duration**
+or high-step-count experiments against the HashHelix engine.
 
-Goals:
+Goals (engineering-facing):
 
-- Run one or more lanes for large step counts and/or long wall-clock durations.
-- Periodically snapshot the state in a human-readable and machine-readable way.
-- Observe whether any stability issues appear over time.
+- Describe a set of long-horizon test plans (not the math, just the runs).
+- Keep the description deterministic and reproducible.
+- Emit a canonical JSON plan that the Stage 4 Master Execution Harness (S4-MEH)
+  can reference and mirror.
 
-Constraints:
-
-- The core recurrence must remain unchanged.
-- No prior epochs or relics should be modified.
-- All new artifacts should live under:
+This script:
+- MUST NOT change the core recurrence.
+- MUST NOT modify prior stages or historical data.
+- SHOULD write all scratch artifacts under:
     hh_tmp/stage4_stability/long_horizon/
 """
 
@@ -22,71 +22,92 @@ from pathlib import Path
 import json
 import time
 import argparse
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 LONG_HORIZON_ROOT = Path("hh_tmp/stage4_stability/long_horizon")
 
 
 def ensure_directories() -> None:
+    """Ensure that the Stage 4 long-horizon directories exist."""
     LONG_HORIZON_ROOT.mkdir(parents=True, exist_ok=True)
 
 
-def record_snapshot(metadata: Dict[str, Any]) -> Path:
+def write_long_horizon_plan(plan: Dict[str, Any]) -> Path:
     """
-    Write a snapshot JSON file describing the current long-horizon run state.
-
-    Actual lane state and statistics will be added later.
+    Write the canonical Stage 4 long-horizon plan JSON expected by S4-MEH.
     """
     ensure_directories()
-    timestamp = time.strftime("%Y%m%d-%H%M%S", time.localtime())
-    out_path = LONG_HORIZON_ROOT / f"long_horizon_snapshot_{timestamp}.json"
+
+    out_path = LONG_HORIZON_ROOT / "stage4_long_horizon_plan.json"
     with out_path.open("w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2)
+        json.dump(plan, f, indent=2)
+
+    print(f"[Stage 4] Long-horizon plan JSON written → {out_path}")
     return out_path
 
 
 def parse_args() -> argparse.Namespace:
+    """
+    Parse CLI arguments for the long-horizon planner.
+
+    These arguments describe *how many* long runs and their rough sizes,
+    but they do not run the engine themselves.
+    """
     parser = argparse.ArgumentParser(
-        description="Stage 4: Long-horizon behavior harness for HashHelix."
+        description="Stage 4: Long-horizon behavior planning for HashHelix."
     )
     parser.add_argument(
-        "--label",
-        default="baseline",
-        help="Label for this long-horizon run (e.g., lane01_baseline).",
+        "--profiles",
+        nargs="+",
+        default=["baseline_1M", "baseline_10M"],
+        help="Named long-horizon profiles (e.g., baseline_1M, baseline_10M).",
     )
     parser.add_argument(
-        "--target-steps",
+        "--lanes",
         type=int,
-        default=1_000_000,
-        help="Nominal step target for the long-horizon run.",
-    )
-    parser.add_argument(
-        "--snapshot-interval-steps",
-        type=int,
-        default=100_000,
-        help="Interval (in steps) between snapshots.",
+        default=3,
+        help="Number of lanes to include in each long-horizon profile.",
     )
     return parser.parse_args()
 
 
+def build_plan(profiles: List[str], lanes: int) -> Dict[str, Any]:
+    """
+    Construct a deterministic long-horizon test plan.
+
+    This is purely descriptive metadata — it tells downstream tools
+    what to run, but does not perform the runs itself.
+    """
+    timestamp = time.strftime("%Y%m%d-%H%M%S", time.localtime())
+
+    # Simple, descriptive entries for now. We can refine later without
+    # changing the overall structure expected by the master harness.
+    runs: List[Dict[str, Any]] = []
+    for name in profiles:
+        runs.append(
+            {
+                "profile": name,
+                "lanes": lanes,
+                "notes": "Long-horizon profile definition only; engine wiring occurs in a later stage.",
+            }
+        )
+
+    plan: Dict[str, Any] = {
+        "script": "stage4_long_horizon.py",
+        "generated_at_local": timestamp,
+        "profiles": profiles,
+        "lanes": lanes,
+        "runs": runs,
+        "status": "plan-defined",
+    }
+    return plan
+
+
 def main() -> None:
     args = parse_args()
-
-    # TODO: Replace this placeholder block with real lane stepping logic.
-    # For now, just emit an initial scaffolding snapshot.
-
-    metadata = {
-        "script": "stage4_long_horizon.py",
-        "label": args.label,
-        "target_steps": args.target_steps,
-        "snapshot_interval_steps": args.snapshot_interval_steps,
-        "start_time_unix": time.time(),
-        "notes": "Stage 4 long-horizon scaffolding only. Lane evolution TBD.",
-    }
-
-    out_path = record_snapshot(metadata)
-    print(f"[Stage 4] Long-horizon snapshot written → {out_path}")
+    plan = build_plan(args.profiles, args.lanes)
+    write_long_horizon_plan(plan)
 
 
 if __name__ == "__main__":

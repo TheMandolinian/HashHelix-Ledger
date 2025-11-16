@@ -135,15 +135,20 @@ def run_job(job: Stage4JobSpec) -> Dict[str, Any]:
 
     print(f"[S4-MEH] {job.label} JSON mirrored → {master_job_json}")
 
-    # Return a structured summary entry
+    
+       # Convert job dataclass to plain dict, but ensure all paths are strings
+    job_info = asdict(job)
+    job_info["expected_json"] = str(job.expected_json.relative_to(ROOT))
+
     return {
-        "job": asdict(job),
+        "job": job_info,
         "source_json": str(job.expected_json.relative_to(ROOT)),
         "master_json": str(master_job_json.relative_to(ROOT)),
         "stdout": completed.stdout.strip(),
         "stderr": completed.stderr.strip(),
         "ok": completed.returncode == 0,
     }
+
 
 
 def main() -> None:

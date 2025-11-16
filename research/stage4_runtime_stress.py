@@ -1,7 +1,7 @@
 """
 Stage 4 — Runtime Stress Harness
 
-This script is responsible for short, intense runtime stress experiments
+This script is responsible for **short, intense** runtime stress experiments
 against the existing HashHelix engine.
 
 Goals (non-mathematical, engineering-facing):
@@ -53,6 +53,21 @@ def record_run_metadata(metadata: Dict[str, Any]) -> Path:
     return out_path
 
 
+def write_runtime_stress_report(out: Dict[str, Any]) -> Path:
+    """
+    Write the canonical Stage 4 runtime stress report JSON expected by
+    the Stage 4 Master Execution Harness (S4-MEH).
+    """
+    ensure_directories()
+
+    out_path = RUNTIME_STRESS_ROOT / "stage4_runtime_stress_report.json"
+    with out_path.open("w", encoding="utf-8") as f:
+        json.dump(out, f, indent=2)
+
+    print(f"[Stage 4] Runtime Stress JSON written → {out_path}")
+    return out_path
+
+
 def parse_args() -> argparse.Namespace:
     """
     Parse CLI arguments for the runtime stress harness.
@@ -81,11 +96,6 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    # TODO: In a later pass, call into existing HashHelix helpers
-    # to actually drive lanes for the specified duration and profile.
-    #
-    # For now, we just record that a test was intended to run.
-
     metadata = {
         "script": "stage4_runtime_stress.py",
         "profile": args.profile,
@@ -94,8 +104,19 @@ def main() -> None:
         "notes": "Stage 4 scaffolding run. Lane behavior to be wired in later.",
     }
 
-    out_path = record_run_metadata(metadata)
-    print(f"[Stage 4] Runtime stress metadata written → {out_path}")
+    # Per-run metadata file
+    metadata_path = record_run_metadata(metadata)
+    print(f"[Stage 4] Runtime stress metadata written → {metadata_path}")
+
+    # Canonical summary file for the Stage 4 Master Execution Harness
+    summary = {
+        "script": metadata["script"],
+        "profile": metadata["profile"],
+        "duration_seconds": metadata["duration_seconds"],
+        "metadata_file": str(metadata_path),
+        "status": "scaffolding-complete",
+    }
+    write_runtime_stress_report(summary)
 
 
 if __name__ == "__main__":

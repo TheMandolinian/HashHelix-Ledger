@@ -1,82 +1,105 @@
 """
-Stage 4 — Adversarial Scenario Harness
+Stage 4 — Adversarial Scenario Catalog
 
-This script orchestrates practical "what if somebody tries THIS?" experiments.
+This script defines a catalog of **adversarial scenarios** to be simulated
+against the HashHelix engine and verification stack.
 
-Goals:
+Goals (engineering-facing):
 
-- Create or point to **tampered copies** of ledger- or epoch-related files.
-- Run verification against those tampered artifacts.
-- Record whether tampering is detected, how clearly it is reported, and what remains ambiguous.
+- Describe adversarial "what if" cases in structured form.
+- Keep the catalog deterministic and easily extendable.
+- Emit a canonical JSON report for the Stage 4 Master Execution Harness (S4-MEH).
 
-Constraints:
-
-- Original historical data should remain intact.
-- All destructive or tampering operations should operate on copies.
-- All artifacts should live under:
-    hh_tmp/stage4_stability/adversarial/
+This script:
+- MUST NOT change the core recurrence.
+- MUST NOT modify prior stages or historical data.
+- SHOULD write all scratch artifacts under:
+    hh_tmp/stage4_stability/adversarial_scenarios/
 """
 
 from pathlib import Path
 import json
 import time
 import argparse
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
-ADVERSARIAL_ROOT = Path("hh_tmp/stage4_stability/adversarial")
+ADVERSARIAL_ROOT = Path("hh_tmp/stage4_stability/adversarial_scenarios")
 
 
 def ensure_directories() -> None:
+    """Ensure that the Stage 4 adversarial-scenarios directories exist."""
     ADVERSARIAL_ROOT.mkdir(parents=True, exist_ok=True)
 
 
-def record_adversarial_run(result: Dict[str, Any]) -> Path:
-    """Write a JSON record describing an adversarial test attempt."""
+def write_adversarial_report(report: Dict[str, Any]) -> Path:
+    """
+    Write the canonical Stage 4 adversarial scenario report JSON expected by S4-MEH.
+    """
     ensure_directories()
-    timestamp = time.strftime("%Y%m%d-%H%M%S", time.localtime())
-    scenario = result.get("scenario_id", "unknown")
-    out_path = ADVERSARIAL_ROOT / f"adversarial_{scenario}_{timestamp}.json"
+
+    out_path = ADVERSARIAL_ROOT / "stage4_adversarial_report.json"
     with out_path.open("w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2)
+        json.dump(report, f, indent=2)
+
+    print(f"[Stage 4] Adversarial scenarios JSON written → {out_path}")
     return out_path
 
 
 def parse_args() -> argparse.Namespace:
+    """
+    Parse CLI arguments for adversarial scenario planning.
+    """
     parser = argparse.ArgumentParser(
-        description="Stage 4: Adversarial scenario harness for HashHelix."
+        description="Stage 4: Adversarial scenario catalog for HashHelix."
     )
     parser.add_argument(
-        "--scenario-id",
-        default="S4-AD-01",
-        help="Scenario ID from stage4_verification_matrix.md (e.g., S4-AD-01).",
-    )
-    parser.add_argument(
-        "--source-path",
-        default=".",
-        help="Path to the original data or epoch directory to copy/tamper.",
+        "--scenarios",
+        nargs="+",
+        default=[
+            "malicious_lane_restart",
+            "tampered_checkpoint",
+            "replay_attack_window",
+        ],
+        help="Names of adversarial scenarios to include.",
     )
     return parser.parse_args()
 
 
+def build_adversarial_catalog(scenarios: List[str]) -> Dict[str, Any]:
+    """
+    Build a deterministic adversarial-scenario catalog.
+    """
+    timestamp = time.strftime("%Y%m%d-%H%M%S", time.localtime())
+
+    entries: List[Dict[str, Any]] = []
+    for name in scenarios:
+        entries.append(
+            {
+                "scenario": name,
+                "notes": (
+                    "Conceptual adversarial case; concrete simulation wiring "
+                    "is added later in Stage 4."
+                ),
+            }
+        )
+
+    report: Dict[str, Any] = {
+        "script": "stage4_adversarial_scenarios.py",
+        "generated_at_local": timestamp,
+        "scenarios": scenarios,
+        "entries": entries,
+        "status": "adversarial-catalog-defined",
+    }
+    return report
+
+
 def main() -> None:
     args = parse_args()
-
-    # TODO: Implement actual tampering logic on copied data plus verification calls.
-    # For now, we only record that an adversarial test is being scaffolded.
-
-    result = {
-        "script": "stage4_adversarial_scenarios.py",
-        "scenario_id": args.scenario_id,
-        "source_path": args.source_path,
-        "start_time_unix": time.time(),
-        "status": "NOT_IMPLEMENTED_YET",
-        "notes": "Stage 4 adversarial scaffolding. Tampering + verification TBD.",
-    }
-
-    out_path = record_adversarial_run(result)
-    print(f"[Stage 4] Adversarial test placeholder written → {out_path}")
+    report = build_adversarial_catalog(args.scenarios)
+    write_adversarial_report(report)
 
 
 if __name__ == "__main__":
     main()
+
