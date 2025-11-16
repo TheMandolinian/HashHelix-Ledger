@@ -1,7 +1,7 @@
 """
 Stage 4 — Runtime Stress Harness
 
-This script is responsible for **short, intense** runtime stress experiments
+This script is responsible for short, intense runtime stress experiments
 against the existing HashHelix engine.
 
 Goals (non-mathematical, engineering-facing):
@@ -84,7 +84,7 @@ def main() -> None:
     # TODO: In a later pass, call into existing HashHelix helpers
     # to actually drive lanes for the specified duration and profile.
     #
-    # For now, we just record that a test was *intended* to run.
+    # For now, we just record that a test was intended to run.
 
     metadata = {
         "script": "stage4_runtime_stress.py",
