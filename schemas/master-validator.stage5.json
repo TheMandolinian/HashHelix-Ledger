@@ -1,9 +1,8 @@
-cat <<'EOF' > master-validator.stage5.json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://hashhelix.dev/schemas/master-validator.stage5.json",
   "title": "HashHelix Stage 5 Master Validator",
-  "description": "Root schema for validating all Stage 5 constructs: relics, lanes, checkpoints, and proofs-of-determinism.",
+  "description": "Root schema for validating all Stage 5 constructs: relics, tiers, lanes, checkpoints, and proofs-of-determinism.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -15,115 +14,35 @@ cat <<'EOF' > master-validator.stage5.json
   ],
   "properties": {
     "version": {
-      "type": "string",
-      "description": "Schema or validator version identifier."
+      "type": "string"
     },
     "rootRelic": {
-      "$ref": "#/$defs/RootRelic"
+      "$ref": "#/defs/rootRelic"
     },
     "laneManifest": {
-      "$ref": "#/$defs/LaneMetadata"
+      "$ref": "#/defs/laneMetadata"
     },
     "checkpoints": {
-      "$ref": "#/$defs/checkpointChain"
+      "type": "array",
+      "items": { "$ref": "#/defs/checkpointChainEntry" }
     },
     "proofs": {
       "type": "array",
-      "items": {
-        "$ref": "#/$defs/determinismProof"
-      }
+      "items": { "$ref": "#/defs/proofObject" }
     }
   },
-  "$defs": {
-    "RootRelic": {
+  "defs": {
+    "rootRelic": {
       "$ref": "root-relic.stage5.json"
     },
-    "LaneMetadata": {
+    "laneMetadata": {
       "$ref": "lane-metadata.stage5.json"
     },
-    "checkpoint": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "sequence",
-        "hash",
-        "priorHash"
-      ],
-      "properties": {
-        "sequence": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Monotonic index of this checkpoint in the chain."
-        },
-        "hash": {
-          "type": "string",
-          "pattern": "^[a-f0-9]{64}$",
-          "description": "Hash of the state at this checkpoint."
-        },
-        "priorHash": {
-          "type": "string",
-          "pattern": "^[a-f0-9]{64}$",
-          "description": "Hash of the previous checkpoint (or all-zeroes for the first)."
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Optional time when this checkpoint was sealed."
-        },
-        "laneId": {
-          "type": "string",
-          "description": "Optional lane or run identifier associated with this checkpoint."
-        }
-      }
-    },
-    "checkpointChain": {
+    "checkpointChainEntry": {
       "$ref": "checkpoint-chain.stage5.json"
     },
-    "determinismProof": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "laneId",
-        "startSeq",
-        "endSeq",
-        "replayHash",
-        "expectedHash",
-        "valid"
-      ],
-      "properties": {
-        "laneId": {
-          "type": "string",
-          "format": "uuid",
-          "description": "Identifier of the lane being proven."
-        },
-        "startSeq": {
-          "type": "integer",
-          "description": "Sequence index where the replay window begins."
-        },
-        "endSeq": {
-          "type": "integer",
-          "description": "Sequence index where the replay window ends."
-        },
-        "replayHash": {
-          "type": "string",
-          "pattern": "^[a-f0-9]{64}$",
-          "description": "Hash produced by replaying the lane over the [startSeq, endSeq] window."
-        },
-        "expectedHash": {
-          "type": "string",
-          "pattern": "^[a-f0-9]{64}$",
-          "description": "Hash expected according to the canonical ledger record."
-        },
-        "valid": {
-          "type": "boolean",
-          "description": "Whether the replay result matched the expected hash."
-        },
-        "notes": {
-          "type": "string",
-          "description": "Optional free-form notes about this replay/proof."
-        }
-      }
+    "proofObject": {
+      "$ref": "relicTier.stage5.json"
     }
   }
 }
-EOF
