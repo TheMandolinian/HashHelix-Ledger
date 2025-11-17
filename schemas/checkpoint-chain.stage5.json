@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/checkpoint-chain.stage5.json",
+  "title": "HashHelix Stage 5 Checkpoint Chain",
+  "description": "Ordered chain of sealed checkpoints for a HashHelix run.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "sequence",
+      "hash",
+      "priorHash"
+    ],
+    "properties": {
+      "sequence": {
+        "description": "Monotonic index of this checkpoint in the chain.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "hash": {
+        "description": "Hash of the state at this checkpoint.",
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "priorHash": {
+        "description": "Hash of the previous checkpoint in the chain (or all-zeroes for the first).",
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "timestamp": {
+        "description": "Optional timestamp when this checkpoint was sealed.",
+        "type": "string",
+        "format": "date-time"
+      },
+      "laneId": {
+        "description": "Optional identifier tying this checkpoint to a specific lane or run.",
+        "type": "string"
+      }
+    }
+  }
+}

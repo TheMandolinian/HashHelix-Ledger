@@ -28,7 +28,7 @@ Date of Discovery: November 8, 2025
 Time: 9:09 PM CST
 Artifact: IMG_6682.PNG (spiral formula screenshot)
 
-Origin of the Recurrence. The Waresback Deterministic Temporal Primitive (WDTP) was first discovered on November 8, 2025, during an exploratory session generating spiral art using Grok. The earliest surviving record is a screenshot (IMG_6682.PNG) captured at 9:09 PM CST and preserved in Google Photos, showing the exact recurrence and its initial 20 terms.
+Origin of the Recurrence. The Waresback Deterministic Temporal Primitive (WDTP) was first discovered on November 8, 2025, during an exploratory session generating spiral art using Grok. The earliest surviving record is a screenshot  captured at 9:09 PM CST and preserved in Google Photos, showing the exact recurrence and its initial 20 terms.
 
 a₁ = 1
 aₙ = ⌊ n * sin(aₙ₋₁ + π/n) ⌋ + 1

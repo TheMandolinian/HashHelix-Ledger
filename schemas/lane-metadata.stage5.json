@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/lane-metadata.stage5.json",
+  "title": "HashHelix Stage 5 Lane Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "laneId",
+    "runner",
+    "hardware",
+    "startedAt",
+    "completedAt",
+    "runtimeMillis"
+  ],
+  "properties": {
+    "laneId": {
+      "description": "Identifier of the lane or computation run.",
+      "type": "string",
+      "minLength": 1
+    },
+    "runner": {
+      "description": "Human or agent who executed the lane.",
+      "type": "string",
+      "minLength": 1
+    },
+    "hardware": {
+      "description": "Hardware and environment fingerprint for reproducibility.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cpu",
+        "cores",
+        "memoryGB",
+        "os",
+        "pythonVersion"
+      ],
+      "properties": {
+        "cpu": {
+          "type": "string",
+          "description": "CPU model or identifier.",
+          "minLength": 1
+        },
+        "cores": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of logical CPU cores."
+        },
+        "memoryGB": {
+          "type": "number",
+          "minimum": 0,
+          "description": "System memory in gigabytes."
+        },
+        "os": {
+          "type": "string",
+          "description": "Operating system identifier.",
+          "minLength": 1
+        },
+        "pythonVersion": {
+          "type": "string",
+          "description": "Python version string used during execution.",
+          "minLength": 1
+        }
+      }
+    },
+    "startedAt": {
+      "description": "ISO timestamp for when this computation began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedAt": {
+      "description": "ISO timestamp for when this computation finished.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "runtimeMillis": {
+      "description": "Measured wall-clock runtime for the lane in milliseconds.",
+      "type": "number",
+      "minimum": 0
+    },
+    "notes": {
+      "description": "Optional free-form notes about this computation run.",
+      "type": "string"
+    }
+  }
+}

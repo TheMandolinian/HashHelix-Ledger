@@ -26,8 +26,7 @@
     },
 
     "metadata": {
-      "type": "object",
-      "description": "General metadata about this relic object."
+      "$ref": "relic-metadata.stage5.json"
     },
 
     "payload": {
