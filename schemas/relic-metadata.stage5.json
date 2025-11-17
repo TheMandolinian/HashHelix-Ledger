@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/relic-metadata.stage5.json",
+  "title": "HashHelix Stage 5 Relic Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "label",
+    "description",
+    "author",
+    "createdAt"
+  ],
+  "properties": {
+    "id": {
+      "description": "Stable UUID for this relic metadata record.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "description": "Short human-readable name for the relic.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "description": {
+      "description": "Longer free-form description of the relic.",
+      "type": "string",
+      "minLength": 1
+    },
+    "author": {
+      "description": "Primary author of this relic.",
+      "type": "string",
+      "minLength": 1
+    },
+    "maintainer": {
+      "description": "Optional current maintainer if different from author.",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "ISO-8601 timestamp when this relic was first created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "description": "Optional tags describing this relic (stage, lane, topic, etc.).",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}
