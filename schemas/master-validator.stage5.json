@@ -1,73 +1,87 @@
+cat <<'EOF' > master-validator.stage5.json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://hashhelix.dev/schemas/master-validator.stage5.json",
   "title": "HashHelix Stage 5 Master Validator",
-  "description": "Root schema for validating all Stage 5 constructs: relics, tiers, lanes, checkpoints, and proofs-of-determinism.",
+  "description": "Root schema for validating all Stage 5 constructs: relics, lanes, checkpoints, and proofs-of-determinism.",
   "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "rootRelic",
+    "laneManifest",
+    "checkpoints",
+    "proofs"
+  ],
   "properties": {
-    "version": { "const": "stage5" },
-    "rootRelic": { "$ref": "#/$defs/rootRelic" },
-    "laneManifest": { "$ref": "#/$defs/laneManifest" },
-    "checkpointChain": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/checkpoint" }
+    "version": {
+      "type": "string",
+      "description": "Schema or validator version identifier."
+    },
+    "rootRelic": {
+      "$ref": "#/$defs/RootRelic"
+    },
+    "laneManifest": {
+      "$ref": "#/$defs/LaneMetadata"
+    },
+    "checkpoints": {
+      "$ref": "#/$defs/checkpointChain"
     },
     "proofs": {
       "type": "array",
-      "items": { "$ref": "#/$defs/determinismProof" }
+      "items": {
+        "$ref": "#/$defs/determinismProof"
+      }
     }
   },
-  "required": ["version", "rootRelic", "laneManifest"],
-  "additionalProperties": false,
   "$defs": {
-    "rootRelic": {
-      "type": "object",
-      "properties": {
-        "id": { "type": "string", "format": "uuid" },
-        "genesisHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "timestamp": { "type": "string", "format": "date-time" },
-        "signature": { "type": "string" }
-      },
-      "required": ["id", "genesisHash", "timestamp"],
-      "additionalProperties": false
+    "RootRelic": {
+      "$ref": "root-relic.stage5.json"
     },
-    "laneManifest": {
-      "type": "object",
-      "properties": {
-        "laneCount": { "type": "integer", "minimum": 1 },
-        "laneIds": {
-          "type": "array",
-          "items": { "type": "string", "format": "uuid" }
-        }
-      },
-      "required": ["laneCount", "laneIds"],
-      "additionalProperties": false
+    "LaneMetadata": {
+      "$ref": "lane-metadata.stage5.json"
     },
     "checkpoint": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "hash",
+        "priorHash"
+      ],
       "properties": {
-        "sequence": { "type": "integer", "minimum": 0 },
-        "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "priorHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "timestamp": { "type": "string", "format": "date-time" },
-        "witnesses": {
-          "type": "array",
-          "items": { "type": "string" }
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Monotonic index of this checkpoint in the chain."
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Hash of the state at this checkpoint."
+        },
+        "priorHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Hash of the previous checkpoint (or all-zeroes for the first)."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional time when this checkpoint was sealed."
+        },
+        "laneId": {
+          "type": "string",
+          "description": "Optional lane or run identifier associated with this checkpoint."
         }
-      },
-      "required": ["sequence", "hash", "priorHash"],
-      "additionalProperties": false
+      }
+    },
+    "checkpointChain": {
+      "$ref": "checkpoint-chain.stage5.json"
     },
     "determinismProof": {
       "type": "object",
-      "properties": {
-        "laneId": { "type": "string", "format": "uuid" },
-        "startSeq": { "type": "integer" },
-        "endSeq": { "type": "integer" },
-        "replayHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "expectedHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "valid": { "type": "boolean" }
-      },
+      "additionalProperties": false,
       "required": [
         "laneId",
         "startSeq",
@@ -76,7 +90,40 @@
         "expectedHash",
         "valid"
       ],
-      "additionalProperties": false
+      "properties": {
+        "laneId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Identifier of the lane being proven."
+        },
+        "startSeq": {
+          "type": "integer",
+          "description": "Sequence index where the replay window begins."
+        },
+        "endSeq": {
+          "type": "integer",
+          "description": "Sequence index where the replay window ends."
+        },
+        "replayHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Hash produced by replaying the lane over the [startSeq, endSeq] window."
+        },
+        "expectedHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Hash expected according to the canonical ledger record."
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "Whether the replay result matched the expected hash."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional free-form notes about this replay/proof."
+        }
+      }
     }
   }
 }
+EOF
