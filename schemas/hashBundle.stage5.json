@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/hashBundle.stage5.json",
+  "title": "HashHelix Stage 5 Hash Bundle",
+  "type": "object",
+  "properties": {
+    "hPlus":  { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "hMinus": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "chiral": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "required": ["hPlus", "hMinus", "chiral"],
+  "additionalProperties": false
+}

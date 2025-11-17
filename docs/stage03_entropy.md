@@ -1,7 +1,23 @@
-# HashHelix — Stage 3: Entropy & Pattern Analysis  
-**Version:** Stage 3 Research Dossier  
+# HashHelix Ledger  
+## Stage 3 — Entropy & Pattern Analysis  
+### Research Dossier v1.0 — November 16, 2025  
 **Author:** James Bradley Waresback  
-**Date:** November 2025
+**Commit:** ee97b30 (Merged → main)
+---
+## Abstract
+Stage 3 introduces the first full statistical characterization of the HashHelix Temporal Primitive (HTP).  
+By generating multi-million-step sequences across multiple independent lanes, we establish a reproducible  
+entropy profile, a lane-stable distribution shape, heavy-tailed behavior, and a statistical fingerprint  
+that differs fundamentally from random, Gaussian, chaotic, and hash-derived pseudorandom generators.
+
+The Stage 3 results confirm that HashHelix is:
+- **Deterministic** — any verifier can reproduce results exactly  
+- **Stable across lanes** — entropy converges to a consistent fingerprint  
+- **Statistically distinct** — unlike uniform noise, Gaussian samples, logistic chaos, or SHA-based RNG  
+- **Heavy-tailed** — wide integer excursions without collapse into periodic cycles  
+
+This dossier presents the methods, artifacts, and comparative baselines that establish HashHelix’s  
+unique dynamical signature.
 
 ---
 

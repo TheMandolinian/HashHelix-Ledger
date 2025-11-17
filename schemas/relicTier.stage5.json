@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/relicTier.stage5.json",
+  "title": "HashHelix Stage 5 Relic Tier",
+  "type": "string",
+  "enum": ["root", "ancestral", "prime", "derived"],
+  "description": "Classification of relic depth and inheritance."
+}

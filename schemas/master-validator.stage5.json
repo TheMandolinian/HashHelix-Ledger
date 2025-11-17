@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/master-validator.stage5.json",
+  "title": "HashHelix Stage 5 Master Validator",
+  "description": "Root schema for validating all Stage 5 constructs: relics, tiers, lanes, checkpoints, and proofs-of-determinism.",
+  "type": "object",
+  "properties": {
+    "version": { "const": "stage5" },
+    "rootRelic": { "$ref": "#/$defs/rootRelic" },
+    "laneManifest": { "$ref": "#/$defs/laneManifest" },
+    "checkpointChain": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/checkpoint" }
+    },
+    "proofs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/determinismProof" }
+    }
+  },
+  "required": ["version", "rootRelic", "laneManifest"],
+  "additionalProperties": false,
+  "$defs": {
+    "rootRelic": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "genesisHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "signature": { "type": "string" }
+      },
+      "required": ["id", "genesisHash", "timestamp"],
+      "additionalProperties": false
+    },
+    "laneManifest": {
+      "type": "object",
+      "properties": {
+        "laneCount": { "type": "integer", "minimum": 1 },
+        "laneIds": {
+          "type": "array",
+          "items": { "type": "string", "format": "uuid" }
+        }
+      },
+      "required": ["laneCount", "laneIds"],
+      "additionalProperties": false
+    },
+    "checkpoint": {
+      "type": "object",
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 0 },
+        "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "priorHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "witnesses": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["sequence", "hash", "priorHash"],
+      "additionalProperties": false
+    },
+    "determinismProof": {
+      "type": "object",
+      "properties": {
+        "laneId": { "type": "string", "format": "uuid" },
+        "startSeq": { "type": "integer" },
+        "endSeq": { "type": "integer" },
+        "replayHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "expectedHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "valid": { "type": "boolean" }
+      },
+      "required": [
+        "laneId",
+        "startSeq",
+        "endSeq",
+        "replayHash",
+        "expectedHash",
+        "valid"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
