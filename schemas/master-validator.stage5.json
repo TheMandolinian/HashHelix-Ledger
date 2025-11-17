@@ -1,40 +1,40 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://hashhelix.dev/schemas/master-validator.stage5.json",
-  "title": "HashHelix Stage 5 Master Validator",
-  "description": "Root schema for validating all Stage 5 constructs: relics, tiers, lanes, checkpoints, and proofs-of-determinism.",
+  "title": "HashHelix Stage 5 Master Validator (Engine Only)",
+  "description": "Root schema for validating Stage 5 engine constructs: lanes, checkpoint chains, and proofs-of-determinism. Relics, tiers, vaults, and economic objects are intentionally excluded from this public schema.",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "version",
-    "rootRelic",
     "laneManifest",
     "checkpoints",
     "proofs"
   ],
   "properties": {
     "version": {
-      "type": "string"
-    },
-    "rootRelic": {
-      "$ref": "#/defs/rootRelic"
+      "type": "string",
+      "description": "Semantic version of the master validation schema."
     },
     "laneManifest": {
       "$ref": "#/defs/laneMetadata"
     },
     "checkpoints": {
       "type": "array",
-      "items": { "$ref": "#/defs/checkpointChainEntry" }
+      "description": "Ordered list of checkpoint-chain entries for this validation bundle.",
+      "items": {
+        "$ref": "#/defs/checkpointChainEntry"
+      }
     },
     "proofs": {
       "type": "array",
-      "items": { "$ref": "#/defs/proofObject" }
+      "description": "Engine-level proofs of determinism (e.g., chiral commitments, Merkle roots).",
+      "items": {
+        "$ref": "#/defs/proofObject"
+      }
     }
   },
   "defs": {
-    "rootRelic": {
-      "$ref": "root-relic.stage5.json"
-    },
     "laneMetadata": {
       "$ref": "lane-metadata.stage5.json"
     },
@@ -42,7 +42,32 @@
       "$ref": "checkpoint-chain.stage5.json"
     },
     "proofObject": {
-      "$ref": "relicTier.stage5.json"
+      "type": "object",
+      "description": "Minimal engine-only proof object. Higher-level relic and vault semantics are private and not modeled here.",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "digest"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Type of proof (e.g., 'chiral', 'merkle', 'epoch')."
+        },
+        "digest": {
+          "type": "string",
+          "description": "Hex-encoded SHA-256 digest or equivalent proof hash.",
+          "pattern": "^[0-9a-fA-F]{64}$"
+        },
+        "laneId": {
+          "type": "integer",
+          "description": "Optional lane identifier this proof is associated with."
+        },
+        "epoch": {
+          "type": "integer",
+          "description": "Optional epoch index this proof is associated with."
+        }
+      }
     }
   }
 }
