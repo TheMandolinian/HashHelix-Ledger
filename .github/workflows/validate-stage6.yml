@@ -1,25 +1,17 @@
-name: Validate Stage 6 Engine Artifacts
+name: Stage 6 Engine Validation
 
 on:
   push:
-    paths:
-      - "schemas/lane-artifact.stage6.json"
-      - "schemas/hashBundle.stage6.json"
-      - "artifacts/stage6_sample/**"
-      - ".github/workflows/validate-stage6.yml"
+    branches: [ main ]
   pull_request:
-    paths:
-      - "schemas/lane-artifact.stage6.json"
-      - "schemas/hashBundle.stage6.json"
-      - "artifacts/stage6_sample/**"
-      - ".github/workflows/validate-stage6.yml"
+    branches: [ main ]
 
 jobs:
-  validate-stage6:
+  stage6-validate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -27,37 +19,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install jsonschema
-        run: pip install jsonschema
-
-      - name: Validate Stage 6 lane artifact
+      - name: Run Stage 6 engine validation pipeline
         run: |
-          python - << 'PY'
-          import json
-          from jsonschema import validate
+          python scripts/hh_validate_engine.py artifacts/stage6_sample/lane01_artifact.json
+          python scripts/hh_compress.py artifacts/stage6_sample/lane01_artifact.json
+          python scripts/hh_expand.py artifacts/stage6_sample/lane01_artifact.json.gz
 
-          with open("schemas/lane-artifact.stage6.json", "r", encoding="utf-8") as f:
-              lane_schema = json.load(f)
-
-          with open("artifacts/stage6_sample/lane01_artifact.json", "r", encoding="utf-8") as f:
-              lane_artifact = json.load(f)
-
-          validate(instance=lane_artifact, schema=lane_schema)
-          print("[OK] lane01_artifact.json matches lane-artifact.stage6.json")
-          PY
-
-      - name: Validate Stage 6 bundle (.hhl)
-        run: |
-          python - << 'PY'
-          import json
-          from jsonschema import validate
-
-          with open("schemas/hashBundle.stage6.json", "r", encoding="utf-8") as f:
-              bundle_schema = json.load(f)
-
-          with open("artifacts/stage6_sample/lane01.hhl.json", "r", encoding="utf-8") as f:
-              bundle = json.load(f)
-
-          validate(instance=bundle, schema=bundle_schema)
-          print("[OK] lane01.hhl.json matches hashBundle.stage6.json")
-          PY
