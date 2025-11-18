@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hashhelix.dev/schemas/hashBundle.stage6.json",
+  "title": "HashHelix Stage 6 Engine-Only Bundle",
+  "type": "object",
+  "additionalProperties": false,
+
+  "properties": {
+    "bundle_format": {
+      "type": "string",
+      "const": "hhl.bundle",
+      "description": "Identifies this as a HashHelix bundle object."
+    },
+
+    "stage": {
+      "type": "integer",
+      "const": 6,
+      "description": "Engine lockdown stage for this bundle."
+    },
+
+    "engine": {
+      "type": "string",
+      "description": "Human-readable engine name, e.g., 'HashHelix-Ledger'."
+    },
+
+    "engine_version": {
+      "type": "string",
+      "description": "Public engine version or Git tag."
+    },
+
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_.-]+$",
+      "description": "Stable, non-PII identifier for this bundle."
+    },
+
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp of bundle creation."
+    },
+
+    "engine_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "Optional Git commit hash of the public engine used to produce this bundle."
+    },
+
+    "lane_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./lane-artifact.stage6.json"
+      },
+      "description": "One or more lane artifacts produced by the public HashHelix engine."
+    },
+
+    "seal": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Engine-only sealing metadata (no business logic, no vault semantics).",
+      "properties": {
+        "hash_function": {
+          "type": "string",
+          "enum": ["sha256"],
+          "description": "Hash function used for the bundle hash."
+        },
+        "canonicalization": {
+          "type": "string",
+          "enum": ["RFC8785"],
+          "description": "Canonical JSON form used prior to hashing."
+        },
+        "bundle_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 digest of the canonicalized bundle body."
+        },
+        "lanes_root": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "Optional aggregate digest or Merkle-like root over lane_artifacts."
+        }
+      },
+      "required": ["hash_function", "bundle_hash"]
+    }
+  },
+
+  "required": [
+    "bundle_format",
+    "stage",
+    "bundle_id",
+    "created_at",
+    "lane_artifacts",
+    "seal"
+  ]
+}
