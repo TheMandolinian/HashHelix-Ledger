@@ -1,0 +1,63 @@
+name: Validate Stage 6 Engine Artifacts
+
+on:
+  push:
+    paths:
+      - "schemas/lane-artifact.stage6.json"
+      - "schemas/hashBundle.stage6.json"
+      - "artifacts/stage6_sample/**"
+      - ".github/workflows/validate-stage6.yml"
+  pull_request:
+    paths:
+      - "schemas/lane-artifact.stage6.json"
+      - "schemas/hashBundle.stage6.json"
+      - "artifacts/stage6_sample/**"
+      - ".github/workflows/validate-stage6.yml"
+
+jobs:
+  validate-stage6:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install jsonschema
+        run: pip install jsonschema
+
+      - name: Validate Stage 6 lane artifact
+        run: |
+          python - << 'PY'
+          import json
+          from jsonschema import validate
+
+          with open("schemas/lane-artifact.stage6.json", "r", encoding="utf-8") as f:
+              lane_schema = json.load(f)
+
+          with open("artifacts/stage6_sample/lane01_artifact.json", "r", encoding="utf-8") as f:
+              lane_artifact = json.load(f)
+
+          validate(instance=lane_artifact, schema=lane_schema)
+          print("[OK] lane01_artifact.json matches lane-artifact.stage6.json")
+          PY
+
+      - name: Validate Stage 6 bundle (.hhl)
+        run: |
+          python - << 'PY'
+          import json
+          from jsonschema import validate
+
+          with open("schemas/hashBundle.stage6.json", "r", encoding="utf-8") as f:
+              bundle_schema = json.load(f)
+
+          with open("artifacts/stage6_sample/lane01.hhl.json", "r", encoding="utf-8") as f:
+              bundle = json.load(f)
+
+          validate(instance=bundle, schema=bundle_schema)
+          print("[OK] lane01.hhl.json matches hashBundle.stage6.json")
+          PY
