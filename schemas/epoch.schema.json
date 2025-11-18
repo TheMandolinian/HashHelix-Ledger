@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HashHelix Epoch Bundle",
+  "type": "object",
+
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "epoch_bundle"
+    },
+
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+$"
+    },
+
+    "created_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "vault_class": {
+      "type": "string",
+      "const": "WARM"
+    },
+
+    "singularity_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier or hash of the Singularity Artifact."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+$"
+        }
+      },
+      "required": ["id", "version"]
+    },
+
+    "epoch_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sequential epoch index for this bundle."
+    },
+
+    "lane_roots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "lane_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "h_plus": {
+            "type": "string",
+            "description": "Chiral + strand commitment for this lane/epoch."
+          },
+          "h_minus": {
+            "type": "string",
+            "description": "Chiral - strand commitment for this lane/epoch."
+          },
+          "merkle_root": {
+            "type": "string",
+            "description": "Merkle root for this lane within the epoch."
+          }
+        },
+        "required": ["lane_id", "h_plus", "h_minus", "merkle_root"]
+      }
+    },
+
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "sha256_epoch_bundle": {
+          "type": "string",
+          "description": "Hash of the full serialized epoch bundle."
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["sha256_epoch_bundle", "size_bytes"]
+    }
+  },
+
+  "required": [
+    "artifact_type",
+    "version",
+    "created_utc",
+    "author",
+    "vault_class",
+    "singularity_ref",
+    "epoch_index",
+    "lane_roots",
+    "integrity"
+  ]
+}
