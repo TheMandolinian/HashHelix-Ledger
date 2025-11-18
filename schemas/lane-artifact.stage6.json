@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hashhelix.dev/schemas/lane-artifact.stage6.json",
+  "title": "HashHelix Stage 6 Lane Artifact",
+  "description": "Engine-only lane artifact: sealed lane commitments and metadata. No Relic, Singularity, or vault semantics.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifactKind",
+    "artifactVersion",
+    "digest",
+    "body"
+  ],
+  "properties": {
+    "artifactKind": {
+      "const": "laneArtifact"
+    },
+    "artifactVersion": {
+      "type": "string"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 digest of the canonical lane artifact body."
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "laneId",
+        "height",
+        "chiral",
+        "metadata"
+      ],
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "laneId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chiral": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "h_plus",
+            "h_minus"
+          ],
+          "properties": {
+            "h_plus": {
+              "type": "string",
+              "description": "Chiral + commitment (e.g., SHA-256 hex)."
+            },
+            "h_minus": {
+              "type": "string",
+              "description": "Chiral - commitment (e.g., SHA-256 hex)."
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Engine-safe metadata (stage, lane labels, comments, etc.).",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}
