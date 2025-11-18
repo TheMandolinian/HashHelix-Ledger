@@ -1,0 +1,18 @@
+{
+  "artifactKind": "laneArtifact",
+  "artifactVersion": "6.0",
+  "body": {
+    "chiral": {
+      "h_minus": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "h_plus": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "height": 10000,
+    "laneId": 1,
+    "metadata": {
+      "profile": "sample",
+      "stage": 6
+    },
+    "version": "6.0-engine"
+  },
+  "digest": "a9858252564f09648c9dd5d11792da908c5fd0d1d8058ca7b8fffad520c6e801"
+}
