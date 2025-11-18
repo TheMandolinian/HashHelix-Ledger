@@ -4,3 +4,4 @@ chat.txt
 hh_tmp/
 shards/genesis/[0-9]*/
 .venv/
+private_backup/
