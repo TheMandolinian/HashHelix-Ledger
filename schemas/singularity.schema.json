@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HashHelix Singularity Artifact",
+  "type": "object",
+
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "singularity"
+    },
+
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+$"
+    },
+
+    "created_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "recurrence": {
+      "type": "object",
+      "properties": {
+        "seed": { "type": "integer", "const": 1 },
+        "formula": {
+          "type": "string",
+          "description": "The deterministic recurrence rule.",
+          "const": "a(n) = floor(n * sin(a(n-1) + π/n)) + 1"
+        }
+      },
+      "required": ["seed", "formula"]
+    },
+
+    "vault_class": {
+      "type": "string",
+      "const": "HOT"
+    },
+
+    "lane_parameters": {
+      "type": "object",
+      "properties": {
+        "max_lanes": { "type": "integer", "minimum": 1 },
+        "epoch_length": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["max_lanes", "epoch_length"]
+    },
+
+    "chiral": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "const": true }
+      },
+      "required": ["enabled"]
+    },
+
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "sha256_root": { "type": "string" }
+      },
+      "required": ["sha256_root"]
+    }
+  },
+
+  "required": [
+    "artifact_type",
+    "version",
+    "created_utc",
+    "author",
+    "recurrence",
+    "vault_class",
+    "lane_parameters",
+    "chiral",
+    "integrity"
+  ]
+}
