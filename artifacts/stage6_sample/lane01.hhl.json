@@ -1,0 +1,33 @@
+{
+  "bundle_format": "hhl.bundle",
+  "bundle_id": "stage6-lane01-sample",
+  "created_at": "2025-11-18T03:37:32.927928Z",
+  "engine": "HashHelix-Ledger",
+  "engine_version": "v1.6-dev",
+  "lane_artifacts": [
+    {
+      "artifactKind": "laneArtifact",
+      "artifactVersion": "6.0",
+      "body": {
+        "chiral": {
+          "h_minus": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "h_plus": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "height": 10000,
+        "laneId": 1,
+        "metadata": {
+          "profile": "sample",
+          "stage": 6
+        },
+        "version": "6.0-engine"
+      },
+      "digest": "a9858252564f09648c9dd5d11792da908c5fd0d1d8058ca7b8fffad520c6e801"
+    }
+  ],
+  "seal": {
+    "bundle_hash": "96babac76c2edcdc835baa91cd3b34e750b2d7c017db6643e6376d2a66bd6dff",
+    "canonicalization": "RFC8785",
+    "hash_function": "sha256"
+  },
+  "stage": 6
+}
