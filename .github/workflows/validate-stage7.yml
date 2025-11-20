@@ -1,0 +1,97 @@
+name: Stage 7 — Engine Schema & Artifact Validation
+
+on:
+  push:
+    branches:
+      - stage7-business-ledger
+  pull_request:
+
+jobs:
+  validate-schemas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema
+
+      - name: Validate Singularity schema
+        run: |
+          python - << 'EOF'
+          import json, jsonschema
+          with open("schemas/singularity.schema.json") as f:
+              schema = json.load(f)
+          jsonschema.Draft202012Validator.check_schema(schema)
+          print("✓ Singularity schema OK")
+          EOF
+
+      - name: Validate Epoch schema
+        run: |
+          python - << 'EOF'
+          import json, jsonschema
+          with open("schemas/epoch.schema.json") as f:
+              schema = json.load(f)
+          jsonschema.Draft202012Validator.check_schema(schema)
+          print("✓ Epoch schema OK")
+          EOF
+
+      - name: Validate Relic schema
+        run: |
+          python - << 'EOF'
+          import json, jsonschema
+          with open("schemas/relic.schema.json") as f:
+              schema = json.load(f)
+          jsonschema.Draft202012Validator.check_schema(schema)
+          print("✓ Relic schema OK")
+          EOF
+
+      - name: Check for duplicate schema directories
+        run: |
+          if [ -d "schemas/schemas" ] || [ -d "schemas/schema" ]; then
+            echo "❌ Duplicate nested schema directory detected!"
+            exit 1
+          fi
+          echo "✓ No nested schema folders"
+
+      - name: Enforce vault class conventions
+        run: |
+          python - << 'EOF'
+          import json
+
+          # Singularity must be HOT
+          with open("schemas/singularity.schema.json") as f:
+              s = json.load(f)
+          if s["properties"]["vault_class"]["const"] != "HOT":
+              raise SystemExit("❌ Singularity vault class must be HOT")
+
+          # Epoch must be WARM
+          with open("schemas/epoch.schema.json") as f:
+              e = json.load(f)
+          if e["properties"]["vault_class"]["const"] != "WARM":
+              raise SystemExit("❌ Epoch vault class must be WARM")
+
+          # Relic must be COLD
+          with open("schemas/relic.schema.json") as f:
+              r = json.load(f)
+          if r["properties"]["vault_class"]["const"] != "COLD":
+              raise SystemExit("❌ Relic vault class must be COLD")
+
+          print("✓ Vault class enforcement OK")
+          EOF
+
+      - name: Enforce public-engine-only discipline
+        run: |
+          if grep -R "tokenomics" -n .; then
+            echo "❌ Tokenomics leakage detected in public engine!"
+            exit 1
+          fi
+          echo "✓ Public engine clean (no tokenomics leakage)"
