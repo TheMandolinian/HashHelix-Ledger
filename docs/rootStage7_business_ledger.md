@@ -64,7 +64,7 @@ integrity paths
 
 Private layer (sealed):
 
-tokenomics 1.4
+TO 1.4
 
 business logic
 
