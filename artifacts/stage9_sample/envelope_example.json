@@ -1,7 +1,13 @@
 {
   "envelope_version": 1,
-  "institution_id": "example-test",
+  "envelope_id": "stage9-sample-envelope-0001",
+  "institution_id": "example-test-institution",
   "timestamp": "2025-01-01T00:00:00Z",
+  "engine_timestamp": "2025-01-01T00:00:01Z",
   "entropy_lanes": [],
-  "payload_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+  "payload_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "sequence_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "iso_20022_map": {},
+  "vault_policy": {},
+  "signatures": []
 }
