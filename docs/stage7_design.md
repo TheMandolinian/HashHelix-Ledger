@@ -114,14 +114,12 @@ This layer is designed for verifiability, reproducibility, and external audit.
 
 The private layer includes:
 
-- Tokenomics v1.4 details (distribution, pricing, incentives).
+- Business layer v1.4 details (distribution, pricing, incentives).
 - Business logic for relic issuance and institutional onboarding.
 - Any mapping of relics to financial products or obligations.
 - Operational policies (SLAs, hosting agreements, licensing).
 
 The rule of Stage 7:
-
-> **Tokenomics never appears in the public engine repo.**
 
 The engine can verify *what happened in time*, but not *what it is worth*.
 
@@ -171,7 +169,6 @@ The `validate-stage7.yml` workflow enforces:
   - Singularity → HOT
   - Epoch → WARM
   - Relic → COLD
-- No `tokenomics` string appears anywhere in the engine repository.
 
 This ensures that future changes cannot accidentally weaken the stage boundaries or leak private economics into the public engine.
 
