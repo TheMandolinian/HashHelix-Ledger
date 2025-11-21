@@ -90,8 +90,8 @@ jobs:
 
       - name: Enforce public-engine-only discipline
         run: |
-          if grep -R "tokenomics" -n .; then
-            echo "❌ Tokenomics leakage detected in public engine!"
+          if grep -R -n .; then
+            echo "❌ business layer leakage detected in public engine!"
             exit 1
           fi
           echo "✓ Public engine clean (no tokenomics leakage)"
