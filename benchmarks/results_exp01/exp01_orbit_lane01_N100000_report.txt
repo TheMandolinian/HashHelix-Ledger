@@ -1,0 +1,30 @@
+HashHelix Experiment #1 — Orbit Portrait (Single Lane)
+Lane ID: lane01
+Steps (N): 100000
+Seed a1: 1
+
+Min value: -99899
+Max value: 99996
+Unique values: 72413
+
+Top 20 most frequent values:
+  value     44  →  35 hits
+  value     -3  →  11 hits
+  value    223  →  10 hits
+  value      4  →  9 hits
+  value     -4  →  8 hits
+  value   -171  →  8 hits
+  value   -269  →  8 hits
+  value   -769  →  8 hits
+  value    -19  →  7 hits
+  value    -47  →  7 hits
+  value     54  →  7 hits
+  value    170  →  7 hits
+  value    188  →  7 hits
+  value   -257  →  7 hits
+  value    155  →  7 hits
+  value   -309  →  7 hits
+  value    327  →  7 hits
+  value    360  →  7 hits
+  value   -344  →  7 hits
+  value   -578  →  7 hits

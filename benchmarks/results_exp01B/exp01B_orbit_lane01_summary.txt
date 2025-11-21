@@ -1,0 +1,133 @@
+Exp #1B — High-N Orbit Portrait Stress Test
+Total steps: 10,000,000
+Seed: 1
+Lane: lane01
+
+Running...
+Reached 100,000
+Reached 200,000
+Reached 300,000
+Reached 400,000
+Reached 500,000
+Reached 600,000
+Reached 700,000
+Reached 800,000
+Reached 900,000
+Reached 1,000,000
+Reached 1,100,000
+Reached 1,200,000
+Reached 1,300,000
+Reached 1,400,000
+Reached 1,500,000
+Reached 1,600,000
+Reached 1,700,000
+Reached 1,800,000
+Reached 1,900,000
+Reached 2,000,000
+Reached 2,100,000
+Reached 2,200,000
+Reached 2,300,000
+Reached 2,400,000
+Reached 2,500,000
+Reached 2,600,000
+Reached 2,700,000
+Reached 2,800,000
+Reached 2,900,000
+Reached 3,000,000
+Reached 3,100,000
+Reached 3,200,000
+Reached 3,300,000
+Reached 3,400,000
+Reached 3,500,000
+Reached 3,600,000
+Reached 3,700,000
+Reached 3,800,000
+Reached 3,900,000
+Reached 4,000,000
+Reached 4,100,000
+Reached 4,200,000
+Reached 4,300,000
+Reached 4,400,000
+Reached 4,500,000
+Reached 4,600,000
+Reached 4,700,000
+Reached 4,800,000
+Reached 4,900,000
+Reached 5,000,000
+Reached 5,100,000
+Reached 5,200,000
+Reached 5,300,000
+Reached 5,400,000
+Reached 5,500,000
+Reached 5,600,000
+Reached 5,700,000
+Reached 5,800,000
+Reached 5,900,000
+Reached 6,000,000
+Reached 6,100,000
+Reached 6,200,000
+Reached 6,300,000
+Reached 6,400,000
+Reached 6,500,000
+Reached 6,600,000
+Reached 6,700,000
+Reached 6,800,000
+Reached 6,900,000
+Reached 7,000,000
+Reached 7,100,000
+Reached 7,200,000
+Reached 7,300,000
+Reached 7,400,000
+Reached 7,500,000
+Reached 7,600,000
+Reached 7,700,000
+Reached 7,800,000
+Reached 7,900,000
+Reached 8,000,000
+Reached 8,100,000
+Reached 8,200,000
+Reached 8,300,000
+Reached 8,400,000
+Reached 8,500,000
+Reached 8,600,000
+Reached 8,700,000
+Reached 8,800,000
+Reached 8,900,000
+Reached 9,000,000
+Reached 9,100,000
+Reached 9,200,000
+Reached 9,300,000
+Reached 9,400,000
+Reached 9,500,000
+Reached 9,600,000
+Reached 9,700,000
+Reached 9,800,000
+Reached 9,900,000
+Reached 10,000,000
+
+=== FINAL RESULTS ===
+Min: -9999888
+Max: 9999337
+Sampled frequency entries: 10000
+
+Top 20 sampled values (mod 10k):
+    2666 → 1120
+    2849 → 1114
+    7378 → 1110
+      52 → 1108
+    1431 → 1107
+     951 → 1103
+    9587 → 1101
+    5861 → 1101
+    2639 → 1100
+    2051 → 1100
+    6188 → 1100
+    6531 → 1100
+    4530 → 1100
+    1650 → 1099
+    4545 → 1098
+    7416 → 1097
+    9133 → 1096
+    2772 → 1095
+    9270 → 1094
+    1347 → 1094

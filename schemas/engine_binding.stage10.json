@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "engine_binding.stage10.json",
+  "title": "Stage 10 Engine Binding Manifest",
+  "type": "object",
+
+  "required": [
+    "engineId",
+    "version",
+    "apiMode",
+    "binaryPath",
+    "inputSpec",
+    "outputSpec"
+  ],
+
+  "properties": {
+    "engineId": {
+      "type": "string",
+      "description": "Human-readable identifier for the engine implementation."
+    },
+
+    "version": {
+      "type": "string",
+      "description": "Version of the external engine (semantic versioning recommended)."
+    },
+
+    "apiMode": {
+      "type": "string",
+      "enum": ["cli"],
+      "description": "Stage 10 only supports CLI-bound engines."
+    },
+
+    "binaryPath": {
+      "type": "string",
+      "description": "Path to the engine binary or script to be invoked."
+    },
+
+    "inputSpec": {
+      "type": "object",
+      "description": "Describes the JSON inputs the engine can accept.",
+      "properties": {
+        "laneMetadata": { "type": "boolean" },
+        "epochRequest": { "type": "boolean" },
+        "relicBundle": { "type": "boolean" }
+      }
+    },
+
+    "outputSpec": {
+      "type": "object",
+      "description": "Describes the JSON outputs the engine will emit.",
+      "properties": {
+        "laneArtifact": { "type": "boolean" },
+        "epochBundle": { "type": "boolean" },
+        "relicBundle": { "type": "boolean" }
+      }
+    },
+
+    "performance": {
+      "type": "object",
+      "description": "Optional performance hints for future scheduling.",
+      "properties": {
+        "maxThreads": { "type": "integer" },
+        "maxLanes": { "type": "integer" },
+        "supportsGPU": { "type": "boolean" }
+      }
+    }
+  }
+}

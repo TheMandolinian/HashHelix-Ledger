@@ -1,16 +1,16 @@
 # Chiral Twins — Dual-Helix Mirror Recurrence (+π/n vs −π/n)
 
-**Purpose:**  
-Study how the HashHelix recurrence behaves when the phase term is flipped in sign:  
+**Purpose:** 
+Study how the HashHelix recurrence behaves when the phase term is flipped in sign: 
 one lane uses +π/n and the other uses −π/n.
 
 This produces a “right-handed” and “left-handed” twin, evolving together but not necessarily matching.
 The difference between them is the raw material for:
-- chiral commitments  
-- integrity detection  
-- self-verifying epochs  
-- cross-lane comparison  
-- time-symmetry studies  
+- chiral commitments 
+- integrity detection 
+- self-verifying epochs 
+- cross-lane comparison 
+- time-symmetry studies 
 
 This experiment isolates the core geometric idea of HashHelix chirality.
 
