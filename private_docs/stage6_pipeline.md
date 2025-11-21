@@ -2,7 +2,7 @@
 
 This document describes the Stage 6 engine-only pipeline used to validate and compress
 HashHelix lane artifacts. It is an **engineering-facing** description with no business,
-tokenomics, or licensing details.
+business layer, or licensing details.
 
 ## Scope
 
@@ -13,7 +13,7 @@ Stage 6 locks down:
 - GZIP compression / expansion
 - Minimal CI around sample artifacts
 
-Math, recurrence, tokenomics, and business model are defined elsewhere (PDFs).
+Math, recurrence, business layer, and business model are defined elsewhere (PDFs).
 
 ## Tools
 
@@ -23,7 +23,7 @@ All scripts live in `scripts/`:
   - Checks engine artifacts for:
     - Valid JSON
     - Expected structure (soft checks)
-    - Absence of business-layer keys (pricing, tokenomics, customers, etc.)
+    - Absence of business-layer keys (pricing, business layer, customers, etc.)
 
 - `hh_compress.py`
   - Input: engine-only JSON file
@@ -77,5 +77,5 @@ Stage 6 ensures that:
 - There is a deterministic, portable compression format
 - CI can repeatedly verify this behavior
 
-With this in place, later stages (business ledger, tokenomics, XRPL integration)
+With this in place, later stages (business ledger, business layer, XRPL integration)
 can build on a locked and reproducible engine foundation.
