@@ -12,14 +12,13 @@ Takes epoch bundle JSON files (output of epoch_auto.py) and produces:
 Stage 8 constraints:
 - Deterministic and reproducible
 - No randomness, no timestamps
-- Engine-only (no tokenomics/private economy)
+- Engine-only
 """
 
 import argparse
 import hashlib
 import json
-from pathlib import Path
-from typing import Dict, List, Tuple
+from pathlib import Path from typing import Dict, List, Tuple
 
 
 # ---------- Hash / Merkle helpers ----------
