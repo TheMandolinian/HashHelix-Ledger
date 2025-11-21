@@ -1,0 +1,11 @@
+- **Experiment #1A — Orbit Portraits (100,000 steps)**
+  - Summary: Baseline single-lane orbit behavior
+  - Files:
+    - `research/experiments/exp01A_orbit_portrait_100k.md`
+    - `research/experiments/exp01B_highN/Exp01A_Orbit_Portrait_100k.pdf`
+
+- **Experiment #1B — High-N Orbit Portrait Stress Test (10M steps)**
+  - Summary: Long-horizon chaos & stability validation
+  - Files:
+    - `research/experiments/exp01B_highN/exp01B_orbit_portrait_10M.md`
+    - `research/experiments/exp01B_highN/Exp01B_Orbit_Portrait_10M.pdf`
