@@ -9,7 +9,7 @@ Date: (auto-filled on commit)
 Purpose of Stage 7
 
 Stage 7 transforms HashHelix from a prototype into a sealed deterministic engine with a complete and verifiable artifact pipeline.
-This stage defines the permanent public engine layer that will remain open, auditable, and immutable — while the private economy layer remains sealed.
+This stage defines the permanent public engine layer that will remain open, auditable, and immutable — while the private layer remains sealed.
 
 Core Outcomes of Stage 7
 1. Lock the Singularity Artifact Schema (HOT Vault)
