@@ -1,0 +1,7 @@
+{
+  "envelope_version": 1,
+  "institution_id": "example-test",
+  "timestamp": "2025-01-01T00:00:00Z",
+  "entropy_lanes": [],
+  "payload_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+}
