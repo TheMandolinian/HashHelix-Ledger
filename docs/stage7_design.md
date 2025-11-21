@@ -18,7 +18,7 @@ Stage 7 hardens HashHelix from a prototype into a sealed, deterministic public e
 At the same time, Stage 7 draws a hard line between:
 
 - **Public engine layer** — fully open, auditable, and deterministic.
-- **Private economy layer** — TO v1.4, business rules, pricing, and institutional onboarding.
+ — TO v1.4, business rules, pricing, and institutional onboarding.
 
 The public engine can verify Temporal Relics, but it never exposes or depends on private economic state.
 
