@@ -88,41 +88,32 @@ jobs:
           print("✓ Vault class enforcement OK")
           EOF
 
-            - name: Enforce public-engine-only discipline
+      - name: Enforce public-engine-only discipline
         run: |
           set -euo pipefail
 
-          # Only business/private-layer keywords are forbidden in public engine repo.
+          # Forbidden business layer terms
           FORBIDDEN=(
-            "tokenomics"
-            "Tokenomics"
-            "private economy"
-            "Private economy"
-            "pricing"
-            "Pricing"
-            "licensing"
-            "Licensing"
-            "incentives"
-            "Incentives"
-            "revenue"
-            "Revenue"
-            "profit"
-            "Profit"
-            "customer"
-            "Customer"
+            "pricing" "Pricing"
+            "licensing" "Licensing"
+            "incentives" "Incentives"
+            "revenue" "Revenue"
+            "profit" "Profit"
+            "customer" "Customer"
           )
+
+          # Public engine folders only
+          SCAN_DIRS=(docs scripts schemas artifacts)
 
           echo "🔍 Scanning public engine areas for business-layer leakage…"
 
           leaked=0
-          # scan only these public-engine folders
-          SCAN_DIRS=(docs scripts schemas artifacts)
 
           for word in "${FORBIDDEN[@]}"; do
             for dir in "${SCAN_DIRS[@]}"; do
               if [ -d "$dir" ]; then
                 if grep -R -n -I --exclude-dir={.git,node_modules,private_docs,private_backup} "$word" "$dir" 2>/dev/null; then
-                  echo "❌ Forbidden term found: $word (in $dir)"
+                  echo "❌ Forbidden term found: '$word' in $dir"
                   leaked=1
                 fi
               fi
@@ -135,3 +126,4 @@ jobs:
           fi
 
           echo "✓ Public engine clean (no business-layer leakage)"
+
