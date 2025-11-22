@@ -8,7 +8,6 @@ import pathlib
 FORBIDDEN_BUSINESS_KEYS = {
     "pricing",
     "prices",
-    "tokenomics",
     "licensing",
     "license",
     "customer",

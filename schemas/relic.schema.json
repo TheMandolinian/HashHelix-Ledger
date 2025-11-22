@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HashHelix Temporal Relic",
+  "type": "object",
+
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "temporal_relic"
+    },
+
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+$"
+    },
+
+    "created_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "vault_class": {
+      "type": "string",
+      "const": "COLD"
+    },
+
+    "singularity_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Opaque identifier or hash of the Singularity Artifact."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+$"
+        }
+      },
+      "required": ["id", "version"]
+    },
+
+    "epoch_range": {
+      "type": "object",
+      "properties": {
+        "start_epoch": { "type": "integer", "minimum": 0 },
+        "end_epoch": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["start_epoch", "end_epoch"],
+      "description": "Inclusive epoch range covered by this relic."
+    },
+
+    "lanes": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1 },
+      "minItems": 1,
+      "description": "Lane IDs included in this relic."
+    },
+
+    "chiral_commitment": {
+      "type": "object",
+      "properties": {
+        "h_plus":  { "type": "string" },
+        "h_minus": { "type": "string" }
+      },
+      "required": ["h_plus", "h_minus"],
+      "description": "Dual-helix chiral commitments for this relic."
+    },
+
+    "merkle": {
+      "type": "object",
+      "properties": {
+        "scheme": {
+          "type": "string",
+          "const": "sha256-merkle-v1"
+        },
+        "root": {
+          "type": "string",
+          "description": "Merkle root covering all epochs and lanes in this relic."
+        }
+      },
+      "required": ["scheme", "root"]
+    },
+
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "sha256_bundle": {
+          "type": "string",
+          "description": "Hash of the full serialized relic bundle."
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["sha256_bundle", "size_bytes"]
+    },
+
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "institution": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": [
+    "artifact_type",
+    "version",
+    "created_utc",
+    "author",
+    "vault_class",
+    "singularity_ref",
+    "epoch_range",
+    "lanes",
+    "chiral_commitment",
+    "merkle",
+    "integrity"
+  ]
+}

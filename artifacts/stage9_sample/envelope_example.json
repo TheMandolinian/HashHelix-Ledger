@@ -1,0 +1,32 @@
+{
+  "envelope_version": 1,
+  "envelope_id": "stage9-sample-envelope-0001",
+  "institution_id": "example-test",
+  "timestamp": "2025-11-21T15:18:00Z",
+  "engine_timestamp": "2025-11-21T15:18:53Z",
+
+
+  "lane_root": "0000000000000000000000000000000000000000000000000000000000000000",
+  "epoch_bundle_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "sequence_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "relic_commitment": "3333333333333333333333333333333333333333333333333333333333333333",
+  "merkle_root": "4444444444444444444444444444444444444444444444444444444444444444",
+  "payload_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+
+  "entropy_lanes": [],
+
+  "iso_20022_map": {
+    "MsgId": "SAMPLE-MSG-0001",
+    "CreDtTm": "2025-01-01T00:00:00Z"
+  },
+
+  "vault_policy": "HOT",
+
+  "signatures": {
+    "primary": {
+      "pubkey": "ED25519_SAMPLE_PUBKEY",
+      "sig": "ED25519_SAMPLE_SIG"
+    },
+    "chiral_twin_signature": "CHIRAL_TWIN_SAMPLE_SIG"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HashHelix Anchor Envelope (Stage 9)",
+  "type": "object",
+  "properties": {
+    "envelope_id": {
+      "type": "string",
+      "description": "UUIDv4 identifying this anchor envelope"
+    },
+    "engine_timestamp": {
+      "type": "string",
+      "description": "ISO-8601 timestamp produced by the engine"
+    },
+    "lane_root": {
+      "type": "string",
+      "description": "Hex-encoded lane root hash"
+    },
+    "epoch_bundle_hash": {
+      "type": "string",
+      "description": "Hash of the referenced epoch bundle"
+    },
+    "relic_commitment": {
+      "type": "string",
+      "description": "Commitment referring to the relic set used in this envelope"
+    },
+    "merkle_root": {
+      "type": "string",
+      "description": "Merkle root proving internal envelope integrity"
+    },
+    "chiral_twin_signature": {
+      "type": "string",
+      "description": "Signature verifying chiral twin alignment"
+    },
+    "sequence_hash": {
+      "type": "string",
+      "description": "Hash of the complete lane sequence for this envelope"
+    },
+    "iso_20022_map": {
+      "type": "object",
+      "properties": {
+        "MsgId": { "type": "string" },
+        "CreDtTm": { "type": "string" },
+        "RgltryRptg": { "type": "string" },
+        "SplmtryData": { "type": "string" }
+      },
+      "required": [ "MsgId", "CreDtTm" ]
+    },
+    "vault_policy": {
+      "type": "string",
+      "enum": ["HOT", "WARM", "COLD"],
+      "description": "Declared storage tier for institutional persistence"
+    },
+    "signatures": {
+      "type": "object",
+      "properties": {
+        "institution_sig": { "type": "string" },
+        "hh_engine_sig": { "type": "string" }
+      },
+      "required": [ "institution_sig", "hh_engine_sig" ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional external metadata (case numbers, lab IDs, etc.)"
+    }
+  },
+  "required": [
+    "envelope_id",
+    "engine_timestamp",
+    "lane_root",
+    "epoch_bundle_hash",
+    "relic_commitment",
+    "merkle_root",
+    "chiral_twin_signature",
+    "sequence_hash",
+    "iso_20022_map",
+    "vault_policy",
+    "signatures"
+  ]
+}
