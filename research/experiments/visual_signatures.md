@@ -1,5 +1,5 @@
 nano research/experiments/visual_signatures.md <<'EOF'
-# Experiment #6 — Visual Signatures of HashHelix
+# Experiment #2 — Visual Signatures of HashHelix
 HashHelix Research Suite
 Status: Active, Visualization-Based Structural Study
 
