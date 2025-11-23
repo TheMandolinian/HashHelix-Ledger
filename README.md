@@ -98,7 +98,7 @@ Per LAW-10 — **Public Engine, Private Economy**, this repo contains only the e
 
 **Date:** November 8, 2025 • **Time:** 9:09 PM CST • **Artifact:** IMG_6682.png (spiral screenshot)  
 
-The WDTP was discovered during an exploratory spiral-art session using Grok. That screenshot captured the recurrence, the first ~20 values, and the exact moment of discovery — marking the creation of the **HashHelix Singularity**.
+The WDTP emerged from an exploratory spiral-art session with Grok, taken during a search for the perfect mathematical engine for this project. A single screenshot preserved the recurrence, its first ~20 values, and the moment of recognition — the instant the HashHelix Singularity was born.
 
 🔬 **Mathematical Discovery (2025)**  
 **The Waresback Residue Locking Conjecture**

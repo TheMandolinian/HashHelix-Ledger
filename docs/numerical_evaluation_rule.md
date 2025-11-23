@@ -1,43 +1,27 @@
-# Numerical Evaluation Rule (NER)
-**Binding Engine Law — LAW 4 (v1.9.4)**
+### Numerical Evaluation Rule (NER) — LAW 4 (Binding, 2025)
 
-## Purpose
-The Numerical Evaluation Rule (NER) guarantees that the Waresback Deterministic Temporal Primitive (WDTP) remains
-bit-for-bit deterministic across:
+HashHelix’s temporal primitive (WDTP) is mathematically periodic in its sine argument.  
+However, at extremely large recurrence indices, floating-point phase accumulation causes cross-platform drift unless the phase is normalized before evaluation.
 
-- extremely large N (high-step execution)
-- different CPUs / math libraries
-- different languages (Python, Rust, C, FP, WASM, hardware)
-- long-running institutional deployments
+To preserve bit-for-bit determinism forever, HashHelix adopts the Numerical Evaluation Rule (NER) as a binding law.
 
-Without NER, floating-point phase drift accumulates in the sine argument, leading to cross-machine divergence.
+**WDTP (unchanged):**  
+- Seed: a₁ = 1  
+- Recurrence (n ≥ 2):  
+  aₙ = ⌊ n · sin(aₙ₋₁ + π/n) ⌋ + 1
 
-## Canonical WDTP Recurrence (unchanged)
-WDTP is defined as:
+**NER requirement:**  
+Before any sin() call, the phase must be reduced modulo 2π:
 
-- **Seed:** `a₁ = 1`  
-- **Recurrence (n ≥ 2):**
-  
-  \[
-  a_n = \left\lfloor n \cdot \sin(a_{n-1} + \pi/n) \right\rfloor + 1
-  \]
+phase = (aₙ₋₁ + π/n) mod 2π  
+aₙ = ⌊ n · sin(phase) ⌋ + 1
 
-**NER does not modify this mathematics.**  
-NER only standardizes how the sine argument is evaluated.
+This rule does not alter WDTP mathematics.  
+It standardizes evaluation to eliminate meaningless full-rotation accumulation that exceeds floating-point precision.
 
-## LAW 4 — Numerical Evaluation Rule (NER)
-Before any `sin()` call, the phase **must** be reduced modulo `2π`:
+**Implications:**
+- WDTP remains deterministic at arbitrarily large N  
+- Outputs are identical across CPU architectures, compilers, FPUs, and math libraries  
+- Cross-language implementations (Python, Rust, C, WASM, hardware) remain replay-equivalent forever  
 
-\[
-\text{phase} = (a_{n-1} + \pi/n) \bmod 2\pi
-\]
-
-\[
-a_n = \left\lfloor n \cdot \sin(\text{phase}) \right\rfloor + 1
-\]
-
-### Canonical reference implementation (Python)
-
-```python
-phase = (a_prev + math.pi / n) % (2.0 * math.pi)
-a_n = math.floor(n * math.sin(phase)) + 1
+NER is mandatory for all public-engine computations starting with Whitepaper v1.9.4.

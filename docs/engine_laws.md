@@ -1,135 +1,126 @@
-# HashHelix Engine & Ledger Laws — v1.9.4 (Public Engine Layer)
-Created by James Bradley Waresback — “The Mandolinian” 
-Status: **Binding and Immutable** for all public-engine implementations.
+Dropdown HASHHELIX LEDGER LAWS — FULL CANONICAL VERSION (v1.9.41) 
+The Mandolinian Edition — 2025 Revision 
+Includes the Numerical Evaluation Rule (NER), Transient Locking Findings, and updated 
+terminology. 11/22/2025 9:45pm ct 
 
-These laws define the non-negotiable behavior of the HashHelix deterministic temporal engine.
-They apply to **all** languages, runtimes, and institutional deployments.
 
----
+LAW 1 — The Root Artifact is the Source of All Deterministic Computation 
+Every HashHelix computation originates from a single immutable Root Artifact, which defines: 
+• the recurrence seed, 
+• the canonical π definition, 
+• the engine’s deterministic constraints. 
+No Temporal Relic, Vault, or Lane may override the Root Artifact. 
 
-## LAW 1 — WDTP Is the Sole Temporal Primitive
-HashHelix state evolution is governed only by the Waresback Deterministic Temporal Primitive (WDTP):
 
-- Seed: `a₁ = 1`
-- Recurrence (n ≥ 2):
+LAW 2 — Temporal Relics Are the Only Valid Containers of Computation 
+All engine outputs must be serialized into Temporal Relics, which hold: 
+• the recurrence outputs, 
+• lane metadata, 
+• chiral commitments, 
+• sealing proofs. 
+A Relic is the unit of truth in HashHelix. 
 
-\[
-a_n = \left\lfloor n \cdot \sin(a_{n-1} + \pi/n) \right\rfloor + 1
-\]
 
-No alternative primitives, shortcuts, or probabilistic variants are permitted in the public engine.
+LAW 3 — Deterministic Recurrence Governs All Lanes 
+The HashHelix engine is defined exclusively by the WDTP recurrence: 
 
----
+a₁ = 1aₙ = ⌊ n · sin( a_{n-1} + π/n  mod  2π ) ⌋ + 1    (for n ≥ 2)
 
-## LAW 2 — Deterministic Recurrence Equals Time
-“Time” in HashHelix is not a clock. 
-It is the **deterministic recurrence index** `n`, advanced strictly by WDTP evaluation.
 
-All epoching, lane growth, ordering, and verification rely on recurrence time.
+No fork, variant, or optimization may alter this recurrence without becoming a non-HashHelix 
+derivative system. 
 
----
 
-## LAW 3 — Temporal Relics Are the Containers of Truth
-Temporal Relics are the unified computation containers of HashHelix.
+LAW 4 — The Numerical Evaluation Rule (NER) (New 2025) 
+WDTP must be evaluated with: 
+NER Requirement 
 
-A Relic may contain:
-- lane roots
-- epoch bundles
-- chiral twin heads
-- Merkle checkpoints
-- metadata necessary for deterministic replay
+p𝐡𝐚𝐬𝐞 = (𝒂𝒏−𝟏 +𝝅/𝒏)𝐦𝐨𝐝 𝟐𝝅 
 
-Relics must be reproducible forever from public engine rules.
-
----
-
-## LAW 4 — Numerical Evaluation Rule (NER) (New 2025)
-Before any `sin()` call, WDTP **must** reduce phase mod `2π`:
-
-\[
-\text{phase} = (a_{n-1} + \pi/n) \bmod 2\pi
-\]
-
-\[
-a_n = \left\lfloor n \cdot \sin(\text{phase}) \right\rfloor + 1
-\]
-
-NER is mandatory for all implementations (FP, HP, Rust, C, WASM, or hardware).
-
+This is mandatory for all implementations (FP, HP, Rust, C, or hardware). 
 Without NER, WDTP drifts due to floating-point decay. 
-With NER, WDTP remains mathematically deterministic forever.
+With NER, WDTP is mathematically deterministic forever. 
+This is now binding law. 
 
----
 
-## LAW 5 — Lanes / Epochs / Merkle Are Structural Time Layers
-HashHelix structures recurrence time into:
+LAW 5 — Chiral Lane Structure Is Immutable 
+Every lane operates as a left/right chiral pair. 
+A valid Helix must contain: 
+• Lane L0 (left) 
+• Lane R0 (right) 
+• Defined chiral commitments between them 
+A lane without a chiral twin is invalid and cannot host Relics. 
 
-- **Lanes**: independent deterministic strands
-- **Epochs**: fixed-window bundles of recurrence time
-- **Merkle checkpoints**: deterministic integrity boundaries
 
-These layers are structural only; they do not alter WDTP mathematics.
+LAW 6 — Epoch Bundles Provide Verifiability 
+Temporal Relics must be grouped into sequential Epoch Bundles, each containing: 
+• ordered residue traces, 
+• deterministic phase summaries, 
+• sealed metadata blocks. 
+Epochs allow parallel validation without scanning entire Relics. 
 
----
 
-## LAW 6 — Chiral Twins Must Remain Commit-Commutative
-If chiral twin lanes are used, the + and − strands must be evaluated with identical NER rules and combined via a commutative chiral commitment.
+LAW 7 — Deterministic Compression Is Required 
+All Relic data must be compressible via a deterministic, lossless compressor. 
+If two nodes compress the same Relic and get different bytes, the Relic is invalid. 
 
-Order of +/− strand hashing must not affect final commitment.
 
----
+LAW 8 — Vault Classes Define Access and Cost 
+HashHelix distinguishes between: 
+• HOT Vaults — high-frequency, short-term computation 
+• WARM Vaults — mid-term analytical storage 
+• COLD Vaults — deep archive and institutional anchoring 
+Each vault obeys strict retention and access rules. 
 
-## LAW 7 — Deterministic Ledger Objects Only
-Every public-engine artifact must be derivable from:
-- previous deterministic state
-- WDTP evolution
-- declared inputs
 
-No randomness, system time, external entropy, or nondeterministic ordering is permitted in public engine objects.
+LAW 9 — Public Engine, Private Economy 
+The WDTP recurrence is permissively licensed and public. 
+Temporal Relics, Vault policies, and commercial use of the engine economy are not public. 
+Tokenomics = stopped disclosures. 
+The economy is private-layer only. 
 
----
 
-## LAW 8 — Deterministic Compression Is Allowed, Loss Is Not
-Compression may be applied **only** if it preserves full deterministic replay.
+LAW 10 — Institutional Anchor Envelopes Must Seal Deterministically 
+Institutions anchoring data into HashHelix must: 
+• use Relics, 
+• follow vault-tier rules, 
+• adhere to deterministic sealing, 
+• retain chiral proof integrity. 
+A broken seal invalidates the anchored data. 
 
-Compression must be:
-- stable across machines
-- verifiable from the public engine
-- incapable of changing WDTP outputs
 
-Lossy compression is forbidden.
+LAW 11 — The Engine and Economy Must Remain Strictly Separate 
+No ledger rule may allow commercial actions to influence the recurrence. 
+No fee, token, or financial layer may modify lane computation. 
+The engine is sacred. 
 
----
 
-## LAW 9 — Vault Classes Define Storage Tiers, Not Truth
-Vaults are storage tiers for Relics:
+LAW 12 — HashHelix Is the Internet of Verification 
+HashHelix is not: 
+• a blockchain, 
+• a DAG, 
+• a validator-based consensus system. 
+It is a deterministic temporal computation engine whose purpose is to provide: 
+• verifiable time, 
+• verifiable sequence, 
+• verifiable mathematical truth. 
+This law defines the philosophical foundation of the system. 
 
-- **HOT** — active/reference execution tier
-- **WARM** — institutional storage tier
-- **COLD** — archival / NFT-like tier
 
-Vault placement never changes truth, only availability and policy.
+END OF FULL CANONICAL LAWS (v1.9.4) 
+HASHHELIX LEDGER LAWS — COMPACT HEADER VERSION 
+(For README.md, project headers, and file footers.) 
 
----
 
-## LAW 10 — Public Engine vs. Private Economy Separation
-The WDTP engine, its laws, and all public verification rules are **public and immutable**.
-
-Private layers (tokenomics, contracts, licensing, pricing, institutional onboarding) are **not part of the public engine**.
-
-**Tokenomics = stopped disclosures** in public docs.
-
----
-
-## LAW 11 — HashHelix Is the Internet of Verification
-HashHelix is not a blockchain, DAG, or probabilistic consensus network.
-
-It is a deterministic temporal computation engine whose outputs serve as permanent verification objects.
-
-Any marketing, implementation, or integration must preserve this definition.
-
----
-
-# Change Control
-These laws are binding as of **v1.9.4**. 
-Future versions may add laws, but **no public law may be weakened or contradicted**.
+LAW 1 — Root Artifact governs all truth. 
+LAW 2 — Temporal Relics are the only containers of valid computation. 
+LAW 3 — WDTP is the immutable recurrence. 
+LAW 4 — NER Required: phase must be reduced mod 2π every step. 
+LAW 5 — Lanes are chiral, paired, and immutable. 
+LAW 6 — Epoch Bundles provide deterministic validation. 
+LAW 7 — Compression must be deterministic. 
+LAW 8 — Vault classes define computation vs storage. 
+LAW 9 — Engine public, economy private. 
+LAW 10 — Anchor envelopes must seal deterministically. 
+LAW 11 — Engine and economy must remain separate. 
+LAW 12 — HashHelix = The Internet of Verification.
