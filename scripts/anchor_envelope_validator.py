@@ -1,72 +1,53 @@
-#!/usr/bin/env python3
-"""
-anchor_envelope_validator.py
+# scripts/anchor_envelope_validator.py
+# Stage 9 anchor envelope validator (engine-only)
 
-Validates a Stage 9 Anchor Envelope JSON file against
-schemas/anchor_envelope.stage9.json.
-
-Usage:
-    python3 scripts/anchor_envelope_validator.py path/to/envelope.json
-"""
+from __future__ import annotations
 
 import json
 import sys
 from pathlib import Path
+from typing import Any, Dict
 
-import jsonschema
-from jsonschema import Draft7Validator
+from jsonschema import Draft202012Validator
 
 
 SCHEMA_PATH = Path("schemas/anchor_envelope.stage9.json")
 
 
-def load_schema(schema_path: Path = SCHEMA_PATH) -> dict:
-    """Load and return the Stage 9 anchor envelope schema."""
-    if not schema_path.exists():
-        raise FileNotFoundError(f"Schema not found: {schema_path}")
+def load_schema() -> Dict[str, Any]:
+    if not SCHEMA_PATH.exists():
+        raise FileNotFoundError(f"Schema not found: {SCHEMA_PATH}")
+    with SCHEMA_PATH.open("r", encoding="utf-8") as f:
+        schema = json.load(f)
 
-    try:
-        with schema_path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"Schema is not valid JSON: {schema_path}\n{e}") from e
-
-
-def load_json(path: Path) -> dict:
-    """Load and return JSON from path."""
-    if not path.exists():
-        raise FileNotFoundError(f"Envelope file not found: {path}")
-
-    try:
-        with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"Envelope is not valid JSON: {path}\n{e}") from e
+    # Ensure schema itself is valid
+    Draft202012Validator.check_schema(schema)
+    return schema
 
 
-def validate_envelope(envelope_path: Path) -> bool:
-    """Validate a given envelope JSON file against the Stage 9 schema."""
+def validate_envelope(envelope_path: Path) -> None:
+    if not envelope_path.exists():
+        raise FileNotFoundError(f"Envelope file not found: {envelope_path}")
+
     schema = load_schema()
-    data = load_json(envelope_path)
+    with envelope_path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    # Build validator so we can report *all* errors nicely
-    validator = Draft7Validator(schema)
+    validator = Draft202012Validator(schema)
     errors = sorted(validator.iter_errors(data), key=lambda e: e.path)
 
     if errors:
-        msg_lines = [f"[ERROR] Envelope failed Stage 9 schema validation: {envelope_path}"]
-        for err in errors:
-            loc = " -> ".join(map(str, err.path)) if err.path else "(root)"
-            msg_lines.append(f"  - At {loc}: {err.message}")
-        raise jsonschema.ValidationError("\n".join(msg_lines))
-
-    return True
+        msg_lines = ["[ERROR] Envelope failed Stage 9 schema validation:"]
+        for e in errors:
+            loc = ".".join([str(p) for p in e.path]) or "(root)"
+            msg_lines.append(f" - At {loc}: {e.message}")
+        raise ValueError("\n".join(msg_lines))
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 2 or argv[1] in {"-h", "--help"}:
-        print(__doc__.strip())
-        return 2  # conventional "usage" exit code
+    if len(argv) != 2:
+        print("Usage: python scripts/anchor_envelope_validator.py <path_to_envelope.json>")
+        return 2
 
     envelope_path = Path(argv[1])
 
@@ -80,4 +61,4 @@ def main(argv: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    raise SystemExit(main(sys.argv))

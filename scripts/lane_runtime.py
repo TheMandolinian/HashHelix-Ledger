@@ -12,8 +12,9 @@ Purpose:
 """
 
 import argparse
-import math
 from pathlib import Path
+
+from core.wdtp import wdtp_next
 
 
 def hh_step(prev_a: int, n: int) -> int:
@@ -23,7 +24,7 @@ def hh_step(prev_a: int, n: int) -> int:
     a_1 = seed (integer)
     a_n = floor(n * sin(a_{n-1} + pi / n)) + 1
     """
-    return math.floor(n * math.sin(prev_a + math.pi / n)) + 1
+    return wdtp_next(prev_a, n)
 
 
 def generate_lane_sequential(

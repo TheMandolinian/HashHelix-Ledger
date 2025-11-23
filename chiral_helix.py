@@ -1,7 +1,7 @@
 # chiral_helix.py
 import json, hashlib, time
 from pathlib import Path
-from math import sin, pi
+from core.wdtp import wdtp_next_chiral
 from typing import Optional, List, Dict, Any
 
 # ---- Quantizer (same as single-helix) ----
@@ -10,7 +10,8 @@ def q_round(x: float) -> int:
 
 # ---- Spiral with explicit sign (+1 right-handed, -1 left-handed) ----
 def spiral(a_prev: int, n: int, sign: int) -> int:
-    return q_round(n * sin(a_prev + sign * (pi / n))) + 1
+    # Canonical WDTP with NER enforced
+    return wdtp_next_chiral(a_prev, n, sign=sign)
 
 # ---- One-strand step hash ----
 def strand_hash(a_n: int, d_n: str, h_prev: bytes) -> bytes:

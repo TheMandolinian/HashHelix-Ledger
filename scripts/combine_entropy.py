@@ -1,8 +1,11 @@
-# combine_entropy.py
-# Combine and summarize entropy lanes (soft-skip missing files)
+# scripts/combine_entropy.py
+# Combine and summarize entropy lanes (engine-only)
+
+from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import List, Dict, Any
 
 FILES = [
     "hh_entropy_lane01.txt",
@@ -10,17 +13,31 @@ FILES = [
     "hh_entropy_lane03.txt",
 ]
 
-OUT = "data/entropy_summary.json"
+OUT = Path("data/entropy_summary.jsonl")
 
 
-def load_lane(path):
-    """Load a lane text file → list of integers."""
-    with open(path, "r") as f:
-        return [int(x.strip()) for x in f.readlines()]
+def load_lane(path: Path) -> List[int]:
+    """Load a lane text file -> list of integers. Soft-skip if missing."""
+    if not path.exists():
+        print(f"[WARN] Missing entropy lane file: {path}")
+        return []
+    values: List[int] = []
+    with path.open("r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                values.append(int(line))
+            except ValueError:
+                print(f"[WARN] Non-integer line in {path}: {line!r}")
+    return values
 
 
-def compute_stats(values):
-    """Compute basic statistics for a lane."""
+def compute_stats(values: List[int]) -> Dict[str, Any]:
+    """Compute basic statistics for a lane. Handles empty lanes."""
+    if not values:
+        return {"length": 0, "min": None, "max": None, "mean": None}
     return {
         "length": len(values),
         "min": min(values),
@@ -29,62 +46,26 @@ def compute_stats(values):
     }
 
 
-def main():
-    results = {}
-    missing = []
+def main() -> int:
+    results: Dict[str, Any] = {}
 
-    for i, path in enumerate(FILES, start=1):
-        p = Path(path)
+    for i, rel_path in enumerate(FILES, start=1):
+        path = Path(rel_path)
+        lane_values = load_lane(path)
+        results[f"lane_{i}"] = compute_stats(lane_values)
 
-        if not p.exists():
-            missing.append(path)
-            print(f"[WARN] Missing entropy lane → {path}")
-            continue
+    OUT.parent.mkdir(parents=True, exist_ok=True)
 
-        try:
-            data = load_lane(p)
-        except Exception as e:
-            print(f"[WARN] Could not read {path}: {e}")
-            missing.append(path)
-            continue
+    # JSONL output: one object per line.
+    with OUT.open("w", encoding="utf-8") as f:
+        f.write(json.dumps(results) + "\n")
 
-        results[f"lane_{i}"] = compute_stats(data)
-
-    # If no lanes exist at all, write a minimal safe file
-    Path("data").mkdir(exist_ok=True)
-    if not results:
-        summary = {
-            "lanes": {},
-            "note": "No entropy lanes found. Summary not computed.",
-            "missing": missing,
-        }
-        with open(OUT, "w") as f:
-            json.dump(summary, f, indent=4)
-        print(f"[OK] Minimal summary written → {OUT}")
-        return 0
-
-    # Normal case → write stats summary
-    summary = {
-        "lanes": results,
-        "missing": missing,
-    }
-
-    with open(OUT, "w") as f:
-        json.dump(summary, f, indent=4)
-
-    print(f"[OK] Summary written → {OUT}\n")
-
-    # Also print to terminal
+    print(f"[OK] Summary written -> {OUT}")
     for lane, stats in results.items():
-        print(f"{lane}:")
-        for k, v in stats.items():
-            print(f"  {k}: {v}")
-        print()
+        print(f"{lane}: {stats}")
 
     return 0
 
 
 if __name__ == "__main__":
-    import sys
-    sys.exit(main() or 0)
-
+    raise SystemExit(main())

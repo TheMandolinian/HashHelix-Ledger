@@ -5,3 +5,8 @@ hh_tmp/
 shards/genesis/[0-9]*/
 .venv/
 private_backup/
+# Ignore business-layer documents and private PDFs
+*.pdf
+docs/experiments/exp03/
+docs/core/Cross-Language Compliance.
+docs/core/*

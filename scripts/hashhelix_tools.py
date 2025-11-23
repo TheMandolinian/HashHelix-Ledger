@@ -2,11 +2,15 @@
 import argparse, json, math, time, os, hashlib, struct
 from pathlib import Path
 
+from core.wdtp import wdtp_next_chiral
+
 def sha256_hex(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
 
 def spiral_next(a_prev: int, n: int, phase: float) -> int:
-    return int(n * math.sin(a_prev + phase)) + 1
+    # NER-compliant call into canonical engine
+    sign = +1 if phase >= 0 else -1
+    return wdtp_next_chiral(a_prev, n, sign=sign)
 
 def lane_path(lane: str) -> Path:
     lanes = json.loads(open("lanes.json").read())["lanes"]

@@ -1,0 +1,10 @@
+{
+  "final_n": 50000000,
+  "final_a_n": 28099265,
+  "elapsed_seconds": 120.8,
+  "residue_lock_onset_n": 185,
+  "violations_after_lock": 49761847,
+  "residue_lock_held_to_end": false,
+  "pathologies": [],
+  "success": false
+}
