@@ -8,8 +8,8 @@ writes raw sequences into hh_tmp/singularity_tests.
 This is a *playground* harness – it does NOT mutate the ledger.
 """
 
-import math
 import time
+from core.wdtp import wdtp_next
 from pathlib import Path
 from datetime import datetime
 
@@ -21,7 +21,9 @@ def helix_step(prev_a: int, n: int) -> int:
         a_1 = 1
         a_n = floor(n * sin(a_{n-1} + π/n)) + 1
     """
-    return math.floor(n * math.sin(prev_a + math.pi / n)) + 1
+    if n == 1:
+        return prev_a  # a₁ is seed; recurrence begins at n ≥ 2
+    return wdtp_next(prev_a, n)
 
 
 def run_lane(lane_id: int, steps: int) -> list[int]:

@@ -1,6 +1,6 @@
 import time
 import csv
-import math
+from core.wdtp import wdtp_next
 import os
 from datetime import datetime
 
@@ -9,11 +9,11 @@ from datetime import datetime
 # -----------------------------------------------------
 
 def sine_recursion(n, steps):
-    """A lightweight π/n-phase-drifted sine recursion."""
-    x = 0.0
-    for _ in range(steps):
-        x = math.sin(x + math.pi / n)
-    return x
+    """NER-compliant π/n-phase sine recursion (synthetic benchmark)."""
+    a = 1  # synthetic state, same starting point as WDTP’s a₁ = 1
+    for k in range(2, steps + 2):
+        a = wdtp_next(a, k)
+    return a
 
 
 def run_lane(n, steps):

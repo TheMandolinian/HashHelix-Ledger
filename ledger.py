@@ -1,13 +1,14 @@
 import json, hashlib, time
 from pathlib import Path
-from math import sin, pi
+from core.wdtp import wdtp_next_chiral
 from typing import Optional, List, Dict, Any
 
 def q_round(x: float) -> int:
     return int(round(x))
 
 def spiral(a_prev: int, n: int, sign: int = +1, quantizer=q_round) -> int:
-    return quantizer(n * sin(a_prev + sign * (pi / n))) + 1
+    # Canonical WDTP with NER enforced
+    return wdtp_next_chiral(a_prev, n, sign=sign)
 
 def helix_hash(a_n: int, d_n: str, h_prev: bytes) -> bytes:
     return hashlib.sha256(f"{a_n}|{d_n}".encode() + h_prev).digest()

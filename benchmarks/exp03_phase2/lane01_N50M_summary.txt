@@ -1,0 +1,4 @@
+=== Experiment 3 Phase 2 Summary ===
+Max abs norm: 1.0
+Mean abs norm: 0.6251085107445964
+Final a_n: 2224

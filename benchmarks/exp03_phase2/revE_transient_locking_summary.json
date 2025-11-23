@@ -1,0 +1,7 @@
+{
+  "final_n": 50000000,
+  "lock_onset_n": 185,
+  "violations_after_lock": 49761847,
+  "transient_lock_duration": 49999815,
+  "elapsed_seconds": 25.5
+}
