@@ -66,17 +66,6 @@ Matches tone of Stage 9/10 docs.
 ### ✔️ Fixes structure  
 Your previous section had line-break issues; this corrects formatting.
 
----
-
-# 👉 Next Step
-
-If the README is patched, just say:
-
-**“next”**
-
-and I’ll give you **Step 18 — the Whitepaper v1.9.4 text block**, ready to paste into the whitepaper without editing.
-
-
 ⭐ **Why HashHelix Matters**
 
 HashHelix excels at one thing above all:  
