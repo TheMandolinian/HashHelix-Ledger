@@ -1,0 +1,30 @@
+{
+  "name": "HashHelix Singularity v0",
+  "type": "singularity",
+  "version": "v0.0",
+  "state": "cold_protoform",
+  "description": "A non-deterministic, temporally unbound proto-singularity. This object represents the pre-initialized core state from which deterministic recursion may later emerge. It contains no π/n phase logic, no lineage anchoring, and no temporal binding.",
+  
+  "properties": {
+    "deterministic": false,
+    "temporal_binding": false,
+    "recursion_engine": null,
+    "phase_drift": null,
+    "energy_state": "undefined"
+  },
+
+  "lineage": {
+    "index": "S-0",
+    "parent": null,
+    "root": "SINGULARITY",
+    "status": "proto_origin",
+    "notes": "This object precedes all recursive structures but is not part of the temporal lineage tree."
+  },
+
+  "metadata": {
+    "creator": "James Bradley Waresback — The Mandolinian",
+    "classification": "Proto-Singularity Core",
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "notes": "Serves as the raw computational embryo before the HashHelix π/n engine is introduced."
+  }
+}

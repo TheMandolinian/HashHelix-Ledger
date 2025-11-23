@@ -1,0 +1,11 @@
+{
+  "benchmarks": [
+    {
+      "id": "benchmarks-2025-11-12",
+      "date": "2025-11-12",
+      "version": "v1.6",
+      "mode": "21-helix",
+      "path": "benchmarks-2025-11-12/index.json"
+    }
+  ]
+}

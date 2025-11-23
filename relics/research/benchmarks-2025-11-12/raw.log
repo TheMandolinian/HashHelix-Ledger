@@ -1,0 +1,19 @@
+
+
+cat > shards/research/benchmarks-2025-11-12/raw.log
+cat > shards/research/benchmarks-2025-11-12/raw.log
+
+
+
+
+Date: 2025-11-12
+Machine: Intel i7 laptop
+Mode: 21-Helix temporal recursion benchmark
+
+Result:
+21-HELIX ACHIEVED: 4,929 TPS live — 21.3s for 21,000 appends — 2025-11-12
+
+Notes:
+- Each append used the π/n-phase-drifted sine recursion primitive.
+- This run used the HashHelix v1.6 codebase.
+- Further runs will be compared against this baseline.
