@@ -71,15 +71,29 @@ Primary Use-Cases
 
 Scientific reproducibility
 
-AI model lineage & provenance
+⭐ **Why HashHelix Matters**
 
-Experiment audit trails
+HashHelix excels at one thing above all else:
 
-Cryptographic commitments without timestamps
+### **Producing deterministic, tamper-evident, perfectly reproducible state evolution.**
 
-Ordered logs that require no clock
+This is made possible by:
 
-Long-term institutional data integrity
+- Eliminating floating-point ambiguity and drift through NER
+- A recurrence that encodes time, state, and evolution directly into computation
+- Fully deterministic lane behavior (1M → 1B steps identical) 
+- Institution-ready, reproducibility-focused design 
+
+### **Primary Use-Cases**
+
+- Scientific reproducibility 
+- Cross-language determinism 
+- High-integrity data lineage 
+- Temporal computation 
+- Verification pipelines 
+- Institutional anchoring workflows 
+- Long-term archival state evolution 
+
 
 HashHelix guarantees:
 deterministic recurrence • lane evolution • Merkle sealing • relic generation • integrity proofs.
@@ -94,8 +108,7 @@ Artifact: IMG_6682.png (original spiral screenshot)
 
 The WDTP emerged during an exploratory spiral-art session with Grok while searching for the perfect mathematical engine. One screenshot captured the recurrence, its first ~20 terms, and the moment of recognition — the birth of the HashHelix Singularity.
 
-🔬 Key Mathematical Discovery (2025)
-The Waresback Residue Locking Phenomenon
+🔬 Key Mathematical Discovery (2025) The Waresback Residue Locking Phenomenon
 
 Experiment #2 revealed an astonishing pattern:
 
