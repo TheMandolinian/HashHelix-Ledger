@@ -1,0 +1,65 @@
+Exp #1B / Experiment 3b — High-N Orbit Stress Test (NER Truth Mode)
+Total steps: 50,000,000
+Seed (a1): 1
+Lane: lane01
+
+Recurrence (NER): a_n = floor(n * sin(theta_n)) + 1, theta_n = (a_{n-1} + pi/n) mod 2*pi
+
+Running...
+Reached 1,000,000 steps, a_n = 654317
+Reached 2,000,000 steps, a_n = -1991637
+Reached 3,000,000 steps, a_n = 2398336
+Reached 4,000,000 steps, a_n = 2420672
+Reached 5,000,000 steps, a_n = -4427448
+Reached 6,000,000 steps, a_n = -5964365
+Reached 7,000,000 steps, a_n = 6979045
+Reached 8,000,000 steps, a_n = -834241
+Reached 9,000,000 steps, a_n = -8050703
+Reached 10,000,000 steps, a_n = -4035155
+Reached 11,000,000 steps, a_n = -986780
+Reached 12,000,000 steps, a_n = -11977526
+Reached 13,000,000 steps, a_n = 7357103
+Reached 14,000,000 steps, a_n = -13609097
+Reached 15,000,000 steps, a_n = 9729845
+Reached 16,000,000 steps, a_n = 15538274
+Reached 17,000,000 steps, a_n = 15037903
+Reached 18,000,000 steps, a_n = -17826080
+Reached 19,000,000 steps, a_n = -18971253
+Reached 20,000,000 steps, a_n = 5388167
+Reached 21,000,000 steps, a_n = 20866823
+Reached 22,000,000 steps, a_n = -21282693
+Reached 23,000,000 steps, a_n = 19381276
+Reached 24,000,000 steps, a_n = -19684249
+Reached 25,000,000 steps, a_n = 24803132
+Reached 26,000,000 steps, a_n = 24398280
+Reached 27,000,000 steps, a_n = 20756438
+Reached 28,000,000 steps, a_n = -27932725
+Reached 29,000,000 steps, a_n = -22650921
+Reached 30,000,000 steps, a_n = 11460738
+Reached 31,000,000 steps, a_n = -26609634
+Reached 32,000,000 steps, a_n = 16114765
+Reached 33,000,000 steps, a_n = -29993116
+Reached 34,000,000 steps, a_n = 28839676
+Reached 35,000,000 steps, a_n = -14084503
+Reached 36,000,000 steps, a_n = 35158698
+Reached 37,000,000 steps, a_n = 27398718
+Reached 38,000,000 steps, a_n = 37852290
+Reached 39,000,000 steps, a_n = 35664360
+Reached 40,000,000 steps, a_n = 19743142
+Reached 41,000,000 steps, a_n = -22076350
+Reached 42,000,000 steps, a_n = 36550842
+Reached 43,000,000 steps, a_n = -17763624
+Reached 44,000,000 steps, a_n = 1197431
+Reached 45,000,000 steps, a_n = -32885306
+Reached 46,000,000 steps, a_n = -16490776
+Reached 47,000,000 steps, a_n = 26455293
+Reached 48,000,000 steps, a_n = 46231199
+Reached 49,000,000 steps, a_n = -27475811
+Reached 50,000,000 steps, a_n = 28099265
+
+=== FINAL RESULTS ===
+Final n: 50,000,000
+Final a_n: 28099265
+Min a_n observed: -49998740
+Max a_n observed: 49998962
+Elapsed time (seconds): 17.220

@@ -1,0 +1,115 @@
+Exp #1B / Experiment 3b — High-N Orbit Stress Test (NER Truth Mode)
+Total steps: 1,000,000,000
+Seed (a1): 1
+Lane: lane01
+
+Recurrence (NER): a_n = floor(n * sin(theta_n)) + 1, theta_n = (a_{n-1} + pi/n) mod 2*pi
+
+Running...
+Reached 10,000,000 steps, a_n = -4035155
+Reached 20,000,000 steps, a_n = 5388167
+Reached 30,000,000 steps, a_n = 11460738
+Reached 40,000,000 steps, a_n = 19743142
+Reached 50,000,000 steps, a_n = 28099265
+Reached 60,000,000 steps, a_n = -22250050
+Reached 70,000,000 steps, a_n = 14750757
+Reached 80,000,000 steps, a_n = 72050048
+Reached 90,000,000 steps, a_n = -59123989
+Reached 100,000,000 steps, a_n = 96395114
+Reached 110,000,000 steps, a_n = -82518946
+Reached 120,000,000 steps, a_n = -111042766
+Reached 130,000,000 steps, a_n = -114905094
+Reached 140,000,000 steps, a_n = -133022911
+Reached 150,000,000 steps, a_n = 48422940
+Reached 160,000,000 steps, a_n = 124389009
+Reached 170,000,000 steps, a_n = 71532284
+Reached 180,000,000 steps, a_n = 171684706
+Reached 190,000,000 steps, a_n = -44847501
+Reached 200,000,000 steps, a_n = 17835454
+Reached 210,000,000 steps, a_n = 49887644
+Reached 220,000,000 steps, a_n = -54398737
+Reached 230,000,000 steps, a_n = 140170176
+Reached 240,000,000 steps, a_n = -58064307
+Reached 250,000,000 steps, a_n = -163484644
+Reached 260,000,000 steps, a_n = -252222880
+Reached 270,000,000 steps, a_n = 258838780
+Reached 280,000,000 steps, a_n = -278752869
+Reached 290,000,000 steps, a_n = -31100190
+Reached 300,000,000 steps, a_n = 295219853
+Reached 310,000,000 steps, a_n = 290529925
+Reached 320,000,000 steps, a_n = -63133379
+Reached 330,000,000 steps, a_n = 1247604
+Reached 340,000,000 steps, a_n = -100103814
+Reached 350,000,000 steps, a_n = -221643471
+Reached 360,000,000 steps, a_n = -264346767
+Reached 370,000,000 steps, a_n = 363491130
+Reached 380,000,000 steps, a_n = -325056492
+Reached 390,000,000 steps, a_n = -144654819
+Reached 400,000,000 steps, a_n = 196049408
+Reached 410,000,000 steps, a_n = -349837327
+Reached 420,000,000 steps, a_n = 275235213
+Reached 430,000,000 steps, a_n = 328949397
+Reached 440,000,000 steps, a_n = 271335165
+Reached 450,000,000 steps, a_n = -34199368
+Reached 460,000,000 steps, a_n = 394980242
+Reached 470,000,000 steps, a_n = 283878741
+Reached 480,000,000 steps, a_n = -362334121
+Reached 490,000,000 steps, a_n = 229803193
+Reached 500,000,000 steps, a_n = -15244184
+Reached 510,000,000 steps, a_n = -492039764
+Reached 520,000,000 steps, a_n = -384355945
+Reached 530,000,000 steps, a_n = 497913906
+Reached 540,000,000 steps, a_n = 232553258
+Reached 550,000,000 steps, a_n = 465833727
+Reached 560,000,000 steps, a_n = 498892259
+Reached 570,000,000 steps, a_n = 166549872
+Reached 580,000,000 steps, a_n = -256527406
+Reached 590,000,000 steps, a_n = -11541487
+Reached 600,000,000 steps, a_n = 158241410
+Reached 610,000,000 steps, a_n = -598933429
+Reached 620,000,000 steps, a_n = 310680077
+Reached 630,000,000 steps, a_n = 138585491
+Reached 640,000,000 steps, a_n = 630119996
+Reached 650,000,000 steps, a_n = -310726397
+Reached 660,000,000 steps, a_n = -313723959
+Reached 670,000,000 steps, a_n = 381744730
+Reached 680,000,000 steps, a_n = -667581614
+Reached 690,000,000 steps, a_n = -443460404
+Reached 700,000,000 steps, a_n = 546873330
+Reached 710,000,000 steps, a_n = -116360158
+Reached 720,000,000 steps, a_n = -135531765
+Reached 730,000,000 steps, a_n = 723518060
+Reached 740,000,000 steps, a_n = 704131721
+Reached 750,000,000 steps, a_n = 645354370
+Reached 760,000,000 steps, a_n = 689733849
+Reached 770,000,000 steps, a_n = -397149065
+Reached 780,000,000 steps, a_n = 424169368
+Reached 790,000,000 steps, a_n = 196604854
+Reached 800,000,000 steps, a_n = -382036127
+Reached 810,000,000 steps, a_n = 608683633
+Reached 820,000,000 steps, a_n = -742329691
+Reached 830,000,000 steps, a_n = -10717980
+Reached 840,000,000 steps, a_n = -539757021
+Reached 850,000,000 steps, a_n = -839412138
+Reached 860,000,000 steps, a_n = 798486237
+Reached 870,000,000 steps, a_n = 215218605
+Reached 880,000,000 steps, a_n = 431580320
+Reached 890,000,000 steps, a_n = 548617859
+Reached 900,000,000 steps, a_n = 872695277
+Reached 910,000,000 steps, a_n = -858384478
+Reached 920,000,000 steps, a_n = 577377683
+Reached 930,000,000 steps, a_n = -833691734
+Reached 940,000,000 steps, a_n = 872397679
+Reached 950,000,000 steps, a_n = -909295182
+Reached 960,000,000 steps, a_n = 425742016
+Reached 970,000,000 steps, a_n = -691181238
+Reached 980,000,000 steps, a_n = 178841499
+Reached 990,000,000 steps, a_n = 458346506
+Reached 1,000,000,000 steps, a_n = -713750954
+
+=== FINAL RESULTS ===
+Final n: 1,000,000,000
+Final a_n: -713750954
+Min a_n observed: -999999538
+Max a_n observed: 999998777
+Elapsed time (seconds): 324.506

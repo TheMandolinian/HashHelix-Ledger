@@ -26,14 +26,14 @@ Use this as the canonical high-N runner for:
 
 # ===== Configuration =====
 
-N_STEPS = 10_000_000  # Adjust to 50_000_000 or higher for full stress runs
+N_STEPS = 1_000_000_000  # Adjust to 50_000_000 or higher for full stress runs
 LANE_ID = "lane01"
 SEED_A1 = 1
 
 results_dir = Path(__file__).parent / "results_exp01B"
 results_dir.mkdir(parents=True, exist_ok=True)
 
-summary_path = results_dir / f"exp01B_orbit_{LANE_ID}_summary.txt"
+summary_path = results_dir / f"exp01B_orbit1B_{LANE_ID}_summary.txt"
 
 
 def run_truth_mode():
@@ -43,7 +43,7 @@ def run_truth_mode():
     min_val = a
     max_val = a
 
-    checkpoint_interval = 1_000_000  # print every 1M steps
+    checkpoint_interval = 10_000_000  # print every 1M steps
 
     start_time = time.perf_counter()
 
