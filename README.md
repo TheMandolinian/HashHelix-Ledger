@@ -67,8 +67,6 @@ a_n = \left\lfloor n \cdot \sin\Big( (a_{n-1} + \frac{\pi}{n}) \bmod 2\pi \Big) 
 
 This recurrence is the foundation of the entire **Temporal Ledger** architecture.
 
-This is the foundation of the entire Temporal Ledger architecture.
-
 Is this actually useful? Why would you not just make a hash engine that runs 1234567.. in parallel side by side that does the same thing. Is this all a waste of time?? No..
 
 Feature Comparison: Plain Counter Engine vs HashHelix (WDTP)
