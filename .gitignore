@@ -10,3 +10,15 @@ private_backup/
 docs/experiments/exp03/
 docs/core/Cross-Language Compliance.
 docs/core/*
+
+# --- Stage 12 local stubs (do not commit) ---
+rust_engine
+wasm_runner
+
+# --- Local experiment scratch not part of Stage 12 PR ---
+benchmarks/Experiment 4 — Raw Sequence Cycle Search (Medium Range).py
+benchmarks/Experiment 4 — Raw Sequence Cycle Search (Short Range).py
+research/tools/
+research/experiments/research/
+research/__init__.py
+research/experiments/Experiment 4 — Cycle Detection Periodicity Search.md
