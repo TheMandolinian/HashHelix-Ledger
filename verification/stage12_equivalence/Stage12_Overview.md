@@ -1,130 +1,130 @@
-# Stage 12 — Canonical Equivalence Verification Layer  
-### Deterministic Multi-Runtime Proof for the HashHelix Engine
+Stage 12 — Canonical Equivalence Verification Layer
+HashHelix Ledger — Deterministic Multi-Runtime Verification
 
-Stage 12 establishes the **computational proof** that the HashHelix public engine
-produces **identical results across every supported runtime**.  
-This stage does not rely on “trust” or “assumption.”  
-It formally verifies multi-runtime determinism under NER.
+Author: James Bradley Waresback
+Status: Active
+Version: Stage 12 Lane
 
-The objective is strict and permanent:
+Purpose of Stage 12
 
-> **Python Reference Engine = Rust Engine = WASM Export**  
-> **Bit-for-bit. Step-for-step. Forever.**
+Stage 12 establishes the formal mathematical proof that all HashHelix engine implementations are identical under the WDTP+NER recurrence.
+This verification layer proves:
 
-No business logic. No tokenomics. No private-economy features.  
-Stage 12 is **engine-only, determinism-only, equivalence-only.**
+Python Reference Engine
 
----
+Rust Engine (Stage 10 Contract)
 
-## What Stage 12 Delivers
+WASM Export (Stage 11 Contract)
 
-### 1. Cross-Runtime Verification Suite
+Any future runtime
 
-Stage 12 introduces a dedicated verification workspace:
+…all produce bit-for-bit identical results across all lanes, epochs, and transition states.
+
+This is the first institutional-grade proof of deterministic multi-runtime parity.
+
+Guarantees
+
+Stage 12 permanently certifies:
+
+Python = Rust = WASM
+Bit-for-bit. Step-for-step. Forever.
+
+This includes:
+
+Recurrence values (WDTP with NER)
+
+π/n phase reduction modulo 2π
+
+Chiral lane outputs
+
+SHA-256 transition digests
+
+Epoch bundle signatures
+
+Deterministic JSON serialization
+
+Bundle sealing
+
+Any divergence — even 1 bit — fails Stage 12.
+
+Verification Workspace
 
 /verification/stage12_equivalence/
-python/
-rust/
-wasm/
-test_vectors/
-reports/
+    python/
+    rust/
+    wasm/
+    test_vectors/
+    reports/
 
+This directory is the permanent home for all equivalence artifacts.
 
-This directory becomes the canonical testing ground for deterministic parity.
+Canonical Test Vectors
 
----
+Test vectors specify ground truth for:
 
-### 2. Canonical Test Vectors
+n = 1 → 10,000
 
-Stage 12 generates formal truth tables for HashHelix, including:
+lane counts: 1, 2, 4, 21
 
-- WDTP(+NER) sequences for `n = 1 → 10,000`
-- lane configurations: **1, 2, 4, 21**
-- fixed initial seeds
-- deterministic π/n phase-reduction
-- SHA-256 transition states of state tuples
-- epoch signatures and merged bundles
-- JSON outputs bound to Stage 5/6/7 schemas
+deterministic π/n mod-2π phase snapshots
 
-These vectors define **ground truth** that all runtimes must match.
+SHA-256 transition states
 
----
+epoch bundle summaries
 
-### 3. Equivalence Harness (Python CLI)
+JSON outputs bound to Stage 5/6/7 schemas
 
-A Python command-line harness that:
+These define the canonical truth for all runtimes.
 
-1. Runs the Python reference engine  
-2. Calls the Rust engine via the Stage 10 JSON contract  
-3. Executes the WASM export via Stage 11 contract rules  
-4. Compares **all outputs bit-for-bit**  
-5. Writes verdict files and diffs into `/reports/`
+Equivalence Harness
 
-If any runtime diverges even once, the harness reports it.
+A Python CLI tool compares:
 
----
+Python reference engine
 
-### 4. Stage 12 Final Report
+Rust external engine (via Stage 10 JSON contract)
 
-Stage 12 produces an institution-grade verification artifact:
+WASM runtime (via Stage 11 execution contract)
 
-/verification/stage12_equivalence/reports/Stage12_Final_Report.md
+The harness:
 
+loads canonical test vectors
 
-Containing:
+executes all runtimes
 
-- Test methodology and scope  
-- Runtime parity rules  
-- Any failures or divergences  
-- Pass status summaries  
-- Explanation of why NER eliminates drift  
-- Proof that WDTP + NER is reversible and replayable indefinitely  
-- Confirmation that Rust and WASM are canonical to Python  
+compares outputs bit-for-bit
 
----
+writes verdicts + diffs to /reports/
 
-## Binding Laws (Stage 12)
+Stage 12 Binding Laws
 
-### LAW A — NER Required  
-All runtimes must evaluate:
+LAW A — NER Required
+phase = (a[n−1] + π/n) mod 2π
 
-`phase = (a[n−1] + π/n) mod 2π`
+LAW B — No Drift Allowed
+High-N drift forbidden. Arbitrary precision required.
 
-### LAW B — No Drift Allowed  
-High-N drift is forbidden.  
-Use arbitrary precision or strict mod-2π reduction.
+LAW C — Standard JSON Schemas Only
+Must follow Stage 5 / 6 / 7.
 
-### LAW C — Standard JSON Only  
-All serialization must use Stage 5/6/7 schemas.  
-No custom formats.
+LAW D — WASM Must Be Pure Export
+No hidden state or mutation.
 
-### LAW D — WASM Must Be Pure Export  
-No hidden state, side effects, or mutation outside the exported contract.
+LAW E — Python Is Ground Truth
+Rust & WASM must match Python exactly.
 
-### LAW E — Python Is Ground Truth  
-Rust and WASM must match Python **exactly**.
+Outcome
 
----
+Completion of Stage 12 certifies HashHelix for:
 
-## Why Stage 12 Matters
+academic review
 
-Stage 12 proves:
+institutional onboarding
 
-- HashHelix is deterministic across OS, hardware, and languages  
-- WDTP under NER never drifts, even at extreme N  
-- Multi-lane execution remains parallel and canonically replayable  
-- Epoch bundling and SHA transition states are runtime-identical  
-- Institutions can trust HashHelix as a verifiable temporal engine  
+Rust migration
 
-Completion of Stage 12 certifies the Engine Layer for:
+high-throughput multi-lane scaling
 
-- academic review  
-- cryptographic audit  
-- Rust migration  
-- institutional onboarding  
-- high-throughput multi-lane scaling  
+cryptographic audit
 
----
-
-**Stage 12 is the deterministic equivalence proof that makes HashHelix institution-safe.**
-
+This verifies that HashHelix is a deterministic temporal engine, not a probabilistic consensus system.
