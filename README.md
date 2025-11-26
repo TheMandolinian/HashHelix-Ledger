@@ -95,11 +95,9 @@ HashHelix is for the 0.1 % where you need to prove, a thousand years from now, o
 
 For everything else, yeah, a counter + hash chain is simpler and good enough. But, for the “forever” problems—the ones where even a single skipped or forged counter value is catastrophic —HashHelix is the first thing I’ve ever seen that actually solves it with mathematics instead of governance.
 
-So no, it’s not a waste of time.. -James Bradley Waresback
-
 It’s overkill for almost everything… until the one day someone needs it, and then nothing else on Earth will do. I want to build the chronometer for interstellar civilization.
 
-Most ships will still use regular watches, but the ones that matter won’t leave home without this technology. It's not a waste. That’s humanity's legacy. 
+Most ships will still use regular watches, but the ones that matter won’t leave home without this technology. That’s humanity's legacy. 
 
  **Why HashHelix Matters**
 
@@ -129,7 +127,7 @@ HashHelix guarantees:
 deterministic recurrence • lane evolution • Merkle sealing • relic generation • integrity proofs.
 
 Per LAW-10 — Public Engine, Private Economy, this repository contains only the engine layer.
-All economics, tokenomics, and business-layer systems reside in the private Chiral Labs repository.
+All economics, tokenomics, and business-layer systems reside in the private ChronoHelix-Technologies repository.
 
 🕯️ Historical Origin
 
