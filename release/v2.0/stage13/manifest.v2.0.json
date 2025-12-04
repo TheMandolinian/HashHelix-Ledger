@@ -1,0 +1,12 @@
+{
+  "name": "HashHelix Public Engine",
+  "version": "v2.0.0",
+  "tag": "v2.0.0-engine",
+  "laws_pdf": "release/v2.0/stage13/laws/HashHelix_Ledger_Laws_v1.9.41.pdf",
+  "whitepaper_pdf": "release/v2.0/stage13/whitepaper/HashHelix_Ledger_Whitepaper_v1.9.41.pdf",
+  "verification_root": "release/v2.0/stage13/verification/",
+  "schemas_root": "release/v2.0/stage13/schemas/",
+  "engine_root": "release/v2.0/stage13/engine/",
+  "docs_root": "release/v2.0/stage13/docs/",
+  "checksums_file": "release/v2.0/stage13/checksums.sha256"
+}
