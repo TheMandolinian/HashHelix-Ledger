@@ -5,7 +5,7 @@
 
 ---
 
-## 0. Purpose
+## Purpose
 Stage 11 defines the **canonical WDTP engine interface** and exports it across:
 - Python (reference implementation)
 - Rust (NER-compliant skeleton)
