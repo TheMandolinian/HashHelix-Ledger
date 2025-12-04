@@ -4,6 +4,14 @@ James Bradley Waresback — “The Mandolinian”
 2025 Institutional Release
 Version: v2.0 (2025-11-23)
 Layer: Public Engine (DTL law-compliant) 🌀
+
+**Canonical Engine Standard**
+
+- **Canonical tag:** `v2.0.0-engine` (immutable)
+- **Governing laws:** v1.9.41 — HASHHELIX LEDGER LAWS — FULL CANONICAL VERSION
+- **Canonical release bundle:** [`HashHelix-Engine-v2.0.0.zip`](./release/v2.0/stage13/HashHelix-Engine-v2.0.0.zip)
+- **Official GitHub release:** https://github.com/TheMandolinian/HashHelix-Ledger/releases/tag/v2.0.0-engine
+
 ________________________________________
 ✨ What HashHelix Is
 HashHelix is a deterministic temporal ledger (DTL) —
@@ -31,7 +39,7 @@ What HashHelix Can Do That Blockchains Cannot
 ✔ Produce the same output on any machine
 ✔ Never fork, stall, or split
 ✔ Run lanes in parallel with no conflict domain
-✔ Scale to billions of transactions per second
+✔ Scale to billions of deterministic state-steps with no drift
 ✔ Achieve absolute finality by mathematics alone
 
 This isn’t blockchain evolution.
