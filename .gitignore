@@ -1,28 +1,22 @@
+# Local editor & environment
+.vscode/
+.venv/
 __pycache__/
 *.pyc
+*.swp
+*.swo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Local scratch (safe to ignore)
 chat.txt
 hh_tmp/
-shards/genesis/[0-9]*/
-.venv/
 private_backup/
-# Ignore business-layer documents and private PDFs
-*.pdf
-docs/experiments/exp03/
-docs/core/Cross-Language Compliance.
-docs/core/*
-
-# --- Stage 12 local stubs (do not commit) ---
-rust_engine
-wasm_runner
-
-# --- Local experiment scratch not part of Stage 12 PR ---
-benchmarks/Experiment 4 — Raw Sequence Cycle Search (Medium Range).py
-benchmarks/Experiment 4 — Raw Sequence Cycle Search (Short Range).py
-research/tools/
-research/experiments/research/
-research/__init__.py
-research/experiments/Experiment 4 — Cycle Detection Periodicity Search.md
-.vscode/
-.vscode/
-
-# Allow canonical engine PDFs
+shards/genesis/[0-9]*/
