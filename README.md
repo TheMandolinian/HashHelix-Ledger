@@ -39,7 +39,7 @@ What HashHelix Can Do That Blockchains Cannot
 ✔ Produce the same output on any machine
 ✔ Never fork, stall, or split
 ✔ Run lanes in parallel with no conflict domain
-✔ Scale to billions of transactions per second
+✔  Scale to billions of perfect step-iterations with no phase drift
 ✔ Achieve absolute finality by mathematics alone
 
 This isn’t blockchain evolution.
