@@ -1,4 +1,4 @@
-HashHelix Engine v2.0 — The First Deterministic Technolgy Ledger (DTL) 🧬
+HashHelix Engine v2.0 — The First Deterministic Technology Ledger (DTL) 🧬
 Created by:
 James Bradley Waresback — “The Mandolinian”
 2025 Institutional Release
