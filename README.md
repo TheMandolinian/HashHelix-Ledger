@@ -14,7 +14,7 @@ Layer: Public Engine (DTL law-compliant) 🌀
 
 ________________________________________
 ✨ What HashHelix Is
-HashHelix is a deterministic temporal ledger (DTL) —
+HashHelix is a deterministic sequence ledger (DTL) —
 a completely new category of distributed computation.
 The core breakthrough:
 HashHelix replaces consensus with mathematics.
