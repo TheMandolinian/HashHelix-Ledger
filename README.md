@@ -1,4 +1,4 @@
-HashHelix Engine v2.0 — The First Deterministic Temporal Ledger (DTL) 🧬
+HashHelix Engine v2.0 — The First Deterministic Technolgy Ledger (DTL) 🧬
 Created by:
 James Bradley Waresback — “The Mandolinian”
 2025 Institutional Release
@@ -14,7 +14,7 @@ Layer: Public Engine (DTL law-compliant) 🌀
 
 ________________________________________
 ✨ What HashHelix Is
-HashHelix is a deterministic sequence ledger (DTL) —
+HashHelix is a deterministic technology ledger (DTL) —
 a completely new category of distributed computation.
 The core breakthrough:
 HashHelix replaces consensus with mathematics.
